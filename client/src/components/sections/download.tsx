@@ -94,7 +94,7 @@ export default function Download() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Download <span className="text-teal-400">Summit</span>
+            Download <span className="gold-gradient bg-clip-text text-transparent">Summit</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Choose your preferred resolution and download platform

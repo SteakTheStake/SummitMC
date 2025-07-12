@@ -57,7 +57,7 @@ export default function Gallery() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            See The <span className="text-teal-400">Difference</span>
+            See The <span className="water-gradient bg-clip-text text-transparent">Difference</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Experience the transformation with our before/after comparisons
@@ -102,13 +102,13 @@ export default function Gallery() {
         {/* Featured Screenshots Grid */}
         <div className="mb-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="glassmorphism p-4 rounded-xl">
+            <div className="glassmorphism p-4 rounded-xl texture-hover glow-effect">
               <img 
                 src={medievalTower} 
                 alt="Medieval tower with enhanced textures"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
-              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Medieval Architecture</h4>
+              <h4 className="font-pixelbasel font-semibold text-lg text-stone-400 mb-1">Medieval Architecture</h4>
               <p className="text-slate-300 text-sm">Enhanced stone and wood textures bring medieval builds to life</p>
             </div>
             

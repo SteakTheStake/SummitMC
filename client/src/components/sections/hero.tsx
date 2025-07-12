@@ -41,12 +41,12 @@ export default function Hero() {
         
         <h1 className="font-pixelbasel font-black text-5xl md:text-7xl mb-4">
           <span className="text-white">Minecraft At Its</span>
-          <span className="text-teal-400 block">Peak</span>
+          <span className="grass-gradient bg-clip-text text-transparent block animate-pulse-glow">Peak</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">
           Experience realistic textures that enhance your world without losing Minecraft's charm. 
-          <span className="text-teal-400 font-semibold">
+          <span className="emerald-gradient bg-clip-text text-transparent font-bold animate-shimmer">
             {stats?.totalDownloads ? `${(stats.totalDownloads / 1000).toFixed(1)}k+` : "13.9k+"} downloads
           </span> and counting.
         </p>
@@ -54,7 +54,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button
             onClick={() => scrollToSection("#download")}
-            className="bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 px-8 py-6 text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            className="minecraft-button emerald-gradient px-8 py-6 text-lg font-semibold glow-effect"
           >
             <DownloadIcon className="mr-2" size={20} />
             Download Now
@@ -63,7 +63,7 @@ export default function Hero() {
           <Button
             variant="outline"
             onClick={() => scrollToSection("#gallery")}
-            className="glassmorphism border-slate-600 px-8 py-6 text-lg font-semibold hover:bg-slate-800 transition-all duration-300"
+            className="glassmorphism border-2 border-blue-400 px-8 py-6 text-lg font-semibold hover:bg-blue-500 hover:bg-opacity-20 transition-all duration-300 glow-effect water-effect"
           >
             <Images className="mr-2" size={20} />
             View Gallery
@@ -71,23 +71,25 @@ export default function Hero() {
         </div>
         
         <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-sm text-slate-400">
-          <div className="flex items-center gap-2">
-            <Box className="text-teal-400" size={16} />
+          <div className="flex items-center gap-2 glassmorphism px-4 py-2 rounded-full glow-effect">
+            <Box className="text-green-400" size={16} />
             <span>1.19.x - 1.21.4</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Layers className="text-teal-400" size={16} />
+          <div className="flex items-center gap-2 glassmorphism px-4 py-2 rounded-full glow-effect">
+            <Layers className="text-blue-400" size={16} />
             <span>16x - 512x</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Zap className="text-teal-400" size={16} />
+          <div className="flex items-center gap-2 glassmorphism px-4 py-2 rounded-full glow-effect">
+            <Zap className="text-yellow-400" size={16} />
             <span>Optimized</span>
           </div>
         </div>
       </div>
       {/* Floating elements */}
-      <div className="absolute top-20 left-10 w-16 h-16 bg-teal-500 bg-opacity-20 rounded-lg animate-float"></div>
-      <div className="absolute bottom-20 right-10 w-12 h-12 bg-teal-400 bg-opacity-20 rounded-lg animate-float" style={{ animationDelay: "1s" }}></div>
+      <div className="absolute top-20 left-10 w-16 h-16 grass-gradient opacity-30 rounded-lg animate-float particle-effect"></div>
+      <div className="absolute bottom-20 right-10 w-12 h-12 diamond-gradient opacity-25 rounded-lg animate-float particle-effect" style={{ animationDelay: "1s" }}></div>
+      <div className="absolute top-1/2 right-20 w-8 h-8 gold-gradient opacity-20 rounded-full animate-bounce-subtle" style={{ animationDelay: "2s" }}></div>
+      <div className="absolute bottom-1/3 left-20 w-10 h-10 nether-gradient opacity-15 rounded-lg animate-float" style={{ animationDelay: "3s" }}></div>
     </section>
   );
 }
