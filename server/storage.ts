@@ -1,0 +1,206 @@
+import { users, downloads, versions, screenshots, type User, type InsertUser, type Download, type Version, type Screenshot, type InsertDownload, type InsertVersion, type InsertScreenshot } from "@shared/schema";
+
+export interface IStorage {
+  getUser(id: number): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+  
+  getDownloadStats(): Promise<Download[]>;
+  incrementDownload(resolution: string, platform: string): Promise<Download>;
+  
+  getVersions(): Promise<Version[]>;
+  getLatestVersion(): Promise<Version | undefined>;
+  
+  getScreenshots(category?: string): Promise<Screenshot[]>;
+  addScreenshot(screenshot: InsertScreenshot): Promise<Screenshot>;
+}
+
+export class MemStorage implements IStorage {
+  private users: Map<number, User>;
+  private downloads: Map<string, Download>;
+  private versions: Map<number, Version>;
+  private screenshots: Map<number, Screenshot>;
+  private currentUserId: number;
+  private currentDownloadId: number;
+  private currentVersionId: number;
+  private currentScreenshotId: number;
+
+  constructor() {
+    this.users = new Map();
+    this.downloads = new Map();
+    this.versions = new Map();
+    this.screenshots = new Map();
+    this.currentUserId = 1;
+    this.currentDownloadId = 1;
+    this.currentVersionId = 1;
+    this.currentScreenshotId = 1;
+    
+    this.initializeData();
+  }
+
+  private initializeData() {
+    // Initialize download statistics
+    const downloadStats = [
+      { resolution: "16x", platform: "modrinth", count: 8900 },
+      { resolution: "16x", platform: "planetminecraft", count: 3200 },
+      { resolution: "32x", platform: "modrinth", count: 1200 },
+      { resolution: "64x", platform: "planetminecraft", count: 600 },
+      { resolution: "512x", platform: "planetminecraft", count: 300 }
+    ];
+
+    downloadStats.forEach(stat => {
+      const download: Download = {
+        id: this.currentDownloadId++,
+        resolution: stat.resolution,
+        platform: stat.platform,
+        count: stat.count,
+        lastUpdated: new Date()
+      };
+      this.downloads.set(`${stat.resolution}-${stat.platform}`, download);
+    });
+
+    // Initialize versions
+    const versionsData = [
+      {
+        version: "2.3",
+        resolution: "16x",
+        releaseDate: new Date("2025-02-01"),
+        changelog: "Modified packed mud and mud brick, Enhanced oak log tops, Updated cherry leaves and pink petals, Fixed Polytone compatibility issues, Added wheat crops, bread, bow, arrow textures, New chest CEM, Armor stand models, Enhanced coral textures",
+        downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.3",
+        isLatest: true
+      },
+      {
+        version: "2.1",
+        resolution: "16x",
+        releaseDate: new Date("2025-01-15"),
+        changelog: "Updated cherry tree blocks, bamboo, azalea leaves, Enhanced nether content, Improved blast furnace and composter textures",
+        downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.1",
+        isLatest: false
+      },
+      {
+        version: "0.8",
+        resolution: "64x",
+        releaseDate: new Date("2024-12-20"),
+        changelog: "High definition textures for terrain blocks, Enhanced stone variants, Improved wood grain patterns",
+        downloadUrl: "https://modrinth.com/resourcepack/summit/version/0.8",
+        isLatest: false
+      }
+    ];
+
+    versionsData.forEach(versionData => {
+      const version: Version = {
+        id: this.currentVersionId++,
+        ...versionData
+      };
+      this.versions.set(version.id, version);
+    });
+
+    // Initialize screenshots
+    const screenshotsData = [
+      {
+        imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        title: "Mountain Landscape",
+        description: "Beautiful mountain vista with Summit textures",
+        category: "terrain",
+        resolution: "16x"
+      },
+      {
+        imageUrl: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        title: "Stone Formations",
+        description: "Enhanced stone textures in action",
+        category: "terrain",
+        resolution: "32x"
+      },
+      {
+        imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        title: "Forest Scene",
+        description: "Wood and foliage textures",
+        category: "nature",
+        resolution: "64x"
+      }
+    ];
+
+    screenshotsData.forEach(screenshotData => {
+      const screenshot: Screenshot = {
+        id: this.currentScreenshotId++,
+        ...screenshotData,
+        uploadedAt: new Date()
+      };
+      this.screenshots.set(screenshot.id, screenshot);
+    });
+  }
+
+  async getUser(id: number): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username,
+    );
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const id = this.currentUserId++;
+    const user: User = { ...insertUser, id };
+    this.users.set(id, user);
+    return user;
+  }
+
+  async getDownloadStats(): Promise<Download[]> {
+    return Array.from(this.downloads.values());
+  }
+
+  async incrementDownload(resolution: string, platform: string): Promise<Download> {
+    const key = `${resolution}-${platform}`;
+    const existing = this.downloads.get(key);
+    
+    if (existing) {
+      existing.count++;
+      existing.lastUpdated = new Date();
+      return existing;
+    }
+    
+    const newDownload: Download = {
+      id: this.currentDownloadId++,
+      resolution,
+      platform,
+      count: 1,
+      lastUpdated: new Date()
+    };
+    
+    this.downloads.set(key, newDownload);
+    return newDownload;
+  }
+
+  async getVersions(): Promise<Version[]> {
+    return Array.from(this.versions.values()).sort((a, b) => 
+      new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()
+    );
+  }
+
+  async getLatestVersion(): Promise<Version | undefined> {
+    return Array.from(this.versions.values()).find(v => v.isLatest);
+  }
+
+  async getScreenshots(category?: string): Promise<Screenshot[]> {
+    const allScreenshots = Array.from(this.screenshots.values());
+    if (category) {
+      return allScreenshots.filter(s => s.category === category);
+    }
+    return allScreenshots;
+  }
+
+  async addScreenshot(screenshot: InsertScreenshot): Promise<Screenshot> {
+    const newScreenshot: Screenshot = {
+      id: this.currentScreenshotId++,
+      ...screenshot,
+      description: screenshot.description || null,
+      uploadedAt: new Date()
+    };
+    this.screenshots.set(newScreenshot.id, newScreenshot);
+    return newScreenshot;
+  }
+}
+
+export const storage = new MemStorage();
