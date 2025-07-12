@@ -39,7 +39,7 @@ export default function Tools() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Community <span className="text-teal-400">Tools</span>
+            Community <span className="minecraft-green">Tools</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Essential tools to enhance your Summit experience
@@ -49,10 +49,10 @@ export default function Tools() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Version Compatibility Checker */}
           <div className="glassmorphism p-8 rounded-2xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6">
               <CheckCircle className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Version Checker</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-green">Version Checker</h3>
             <p className="text-slate-300 mb-6">Check compatibility with your Minecraft version</p>
             
             <div className="space-y-3">
@@ -69,16 +69,16 @@ export default function Tools() {
           
           {/* Installation Guide */}
           <div className="glassmorphism p-8 rounded-2xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
               <Book className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Installation Guide</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-blue">Installation Guide</h3>
             <p className="text-slate-300 mb-6">Step-by-step installation instructions</p>
             
             <div className="space-y-2 text-sm text-slate-400">
               {installationSteps.map((step, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <span className="text-teal-400 font-semibold">{index + 1}.</span>
+                  <span className="minecraft-blue font-semibold">{index + 1}.</span>
                   <span>{step}</span>
                 </div>
               ))}
@@ -87,16 +87,16 @@ export default function Tools() {
           
           {/* Performance Tips */}
           <div className="glassmorphism p-8 rounded-2xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-6">
               <Rocket className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Performance Tips</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-gold">Performance Tips</h3>
             <p className="text-slate-300 mb-6">Optimize your gameplay experience</p>
             
             <div className="space-y-2 text-sm text-slate-400">
               {performanceTips.map((tip, index) => (
                 <div key={index} className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-teal-400 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
                   <span>{tip}</span>
                 </div>
               ))}

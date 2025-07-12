@@ -41,12 +41,12 @@ export default function Hero() {
         
         <h1 className="font-pixelbasel font-black text-5xl md:text-7xl mb-4">
           <span className="text-white">Minecraft At Its</span>
-          <span className="grass-gradient bg-clip-text text-transparent block animate-pulse-glow">Peak</span>
+          <span className="minecraft-green block">Peak</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">
           Experience realistic textures that enhance your world without losing Minecraft's charm. 
-          <span className="emerald-gradient bg-clip-text text-transparent font-bold animate-shimmer">
+          <span className="minecraft-green font-semibold">
             {stats?.totalDownloads ? `${(stats.totalDownloads / 1000).toFixed(1)}k+` : "13.9k+"} downloads
           </span> and counting.
         </p>
@@ -54,7 +54,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button
             onClick={() => scrollToSection("#download")}
-            className="minecraft-button emerald-gradient px-8 py-6 text-lg font-semibold glow-effect"
+            className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 px-8 py-6 text-lg font-semibold transition-all duration-300 transform hover:scale-105"
           >
             <DownloadIcon className="mr-2" size={20} />
             Download Now
@@ -63,7 +63,7 @@ export default function Hero() {
           <Button
             variant="outline"
             onClick={() => scrollToSection("#gallery")}
-            className="glassmorphism border-2 border-blue-400 px-8 py-6 text-lg font-semibold hover:bg-blue-500 hover:bg-opacity-20 transition-all duration-300 glow-effect water-effect"
+            className="glassmorphism border-slate-600 px-8 py-6 text-lg font-semibold hover:bg-slate-700 transition-all duration-300"
           >
             <Images className="mr-2" size={20} />
             View Gallery
@@ -71,16 +71,16 @@ export default function Hero() {
         </div>
         
         <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-sm text-slate-400">
-          <div className="flex items-center gap-2 glassmorphism px-4 py-2 rounded-full glow-effect">
-            <Box className="text-green-400" size={16} />
+          <div className="flex items-center gap-2">
+            <Box className="minecraft-green" size={16} />
             <span>1.19.x - 1.21.4</span>
           </div>
-          <div className="flex items-center gap-2 glassmorphism px-4 py-2 rounded-full glow-effect">
-            <Layers className="text-blue-400" size={16} />
+          <div className="flex items-center gap-2">
+            <Layers className="minecraft-blue" size={16} />
             <span>16x - 512x</span>
           </div>
-          <div className="flex items-center gap-2 glassmorphism px-4 py-2 rounded-full glow-effect">
-            <Zap className="text-yellow-400" size={16} />
+          <div className="flex items-center gap-2">
+            <Zap className="minecraft-gold" size={16} />
             <span>Optimized</span>
           </div>
         </div>

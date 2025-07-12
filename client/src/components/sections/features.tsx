@@ -43,7 +43,7 @@ export default function Features() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Why Choose <span className="emerald-gradient bg-clip-text text-transparent">Summit?</span>
+            Why Choose <span className="minecraft-green">Summit?</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Carefully crafted textures that bring new life to your Minecraft world
@@ -52,28 +52,28 @@ export default function Features() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => {
-            const colors = [
-              'grass-gradient',
-              'water-gradient', 
-              'dirt-gradient',
-              'sand-gradient',
-              'nether-gradient',
-              'end-gradient'
+            const iconColors = [
+              'minecraft-green',
+              'minecraft-blue',
+              'minecraft-gold',
+              'minecraft-green',
+              'minecraft-red',
+              'minecraft-blue'
             ];
-            const textColors = [
-              'text-green-400',
-              'text-blue-400',
-              'text-yellow-600',
-              'text-yellow-400',
-              'text-red-400',
-              'text-purple-400'
+            const bgColors = [
+              'bg-green-600',
+              'bg-blue-600',
+              'bg-yellow-600',
+              'bg-green-600',
+              'bg-red-600',
+              'bg-blue-600'
             ];
             return (
-              <div key={index} className="glassmorphism p-8 rounded-2xl texture-hover glow-effect particle-effect">
-                <div className={`w-16 h-16 ${colors[index]} rounded-xl flex items-center justify-center mb-6 animate-pulse-glow`}>
+              <div key={index} className="glassmorphism p-8 rounded-2xl texture-hover">
+                <div className={`w-16 h-16 ${bgColors[index]} rounded-xl flex items-center justify-center mb-6`}>
                   <feature.icon className="text-white" size={24} />
                 </div>
-                <h3 className={`font-pixelbasel font-semibold text-xl mb-4 ${textColors[index]}`}>{feature.title}</h3>
+                <h3 className={`font-pixelbasel font-semibold text-xl mb-4 ${iconColors[index]}`}>{feature.title}</h3>
                 <p className="text-slate-300 leading-relaxed">{feature.description}</p>
               </div>
             );
@@ -83,7 +83,7 @@ export default function Features() {
         {/* Showcase Examples */}
         <div className="text-center mb-12">
           <h3 className="font-pixelbasel font-bold text-3xl mb-4">
-            See It In <span className="diamond-gradient bg-clip-text text-transparent">Action</span>
+            See It In <span className="minecraft-green">Action</span>
           </h3>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Real builds showcasing the Summit texture pack's capabilities
@@ -102,7 +102,7 @@ export default function Features() {
                 <span className="text-white text-sm font-semibold">Medieval Style</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 text-teal-400">Castle & Towers</h4>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-green">Castle & Towers</h4>
             <p className="text-slate-300">Enhanced stone textures make medieval builds look more authentic and detailed</p>
           </div>
 
@@ -117,7 +117,7 @@ export default function Features() {
                 <span className="text-white text-sm font-semibold">Modern Style</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 text-teal-400">Contemporary Homes</h4>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-blue">Contemporary Homes</h4>
             <p className="text-slate-300">Clean lines and modern materials enhanced with realistic lighting and shadows</p>
           </div>
 
@@ -132,7 +132,7 @@ export default function Features() {
                 <span className="text-white text-sm font-semibold">Nature</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 text-teal-400">Natural Landscapes</h4>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-gold">Natural Landscapes</h4>
             <p className="text-slate-300">Vibrant foliage and natural textures that bring the outdoors to life</p>
           </div>
         </div>

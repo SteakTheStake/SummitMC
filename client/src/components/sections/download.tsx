@@ -94,7 +94,7 @@ export default function Download() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Download <span className="gold-gradient bg-clip-text text-transparent">Summit</span>
+            Download <span className="minecraft-green">Summit</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Choose your preferred resolution and download platform
@@ -105,12 +105,12 @@ export default function Download() {
           {/* Download Options */}
           <div className="space-y-6">
             <div className="glassmorphism p-8 rounded-2xl">
-              <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-teal-400">Resolution Options</h3>
+              <h3 className="font-pixelbasel font-semibold text-2xl mb-6 minecraft-green">Resolution Options</h3>
               
               <div className="space-y-4">
                 {resolutionOptions.map((option, index) => (
                   <div key={index} className={`bg-slate-800 p-6 rounded-xl border-2 ${
-                    option.popular ? "border-teal-500" : "border-slate-600"
+                    option.popular ? "border-green-500" : "border-slate-600"
                   }`}>
                     <div className="flex justify-between items-center mb-4">
                       <div>
@@ -137,7 +137,7 @@ export default function Download() {
                         <Button
                           onClick={() => handleDownload(option.resolution, "modrinth", getDownloadUrl(option.resolution, "modrinth"))}
                           className={`flex-1 ${option.popular 
-                            ? "bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700"
+                            ? "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
                             : "bg-slate-700 hover:bg-slate-600"
                           } transition-all duration-300`}
                         >
