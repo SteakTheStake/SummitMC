@@ -38,7 +38,7 @@ export default function Features() {
     <section id="features" className="py-20 px-6">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron font-bold text-4xl md:text-5xl mb-4">
+          <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
             Why Choose <span className="text-teal-400">Summit?</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
@@ -52,7 +52,7 @@ export default function Features() {
               <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
                 <feature.icon className="text-white" size={24} />
               </div>
-              <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">{feature.title}</h3>
+              <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">{feature.title}</h3>
               <p className="text-slate-300 leading-relaxed">{feature.description}</p>
             </div>
           ))}

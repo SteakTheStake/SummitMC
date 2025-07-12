@@ -39,7 +39,7 @@ export default function Hero() {
           </Badge>
         </div>
         
-        <h1 className="font-orbitron font-black text-5xl md:text-7xl mb-4">
+        <h1 className="font-pixelbasel font-black text-5xl md:text-7xl mb-4">
           <span className="text-white">Minecraft At Its</span>
           <span className="text-teal-400 block">Peak</span>
         </h1>

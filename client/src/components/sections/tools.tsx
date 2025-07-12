@@ -38,7 +38,7 @@ export default function Tools() {
     <section id="tools" className="py-20 px-6">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron font-bold text-4xl md:text-5xl mb-4">
+          <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
             Community <span className="text-teal-400">Tools</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
@@ -52,7 +52,7 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <CheckCircle className="text-white" size={24} />
             </div>
-            <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">Version Checker</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Version Checker</h3>
             <p className="text-slate-300 mb-6">Check compatibility with your Minecraft version</p>
             
             <div className="space-y-3">
@@ -72,7 +72,7 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <Book className="text-white" size={24} />
             </div>
-            <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">Installation Guide</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Installation Guide</h3>
             <p className="text-slate-300 mb-6">Step-by-step installation instructions</p>
             
             <div className="space-y-2 text-sm text-slate-400">
@@ -90,7 +90,7 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <Rocket className="text-white" size={24} />
             </div>
-            <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">Performance Tips</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Performance Tips</h3>
             <p className="text-slate-300 mb-6">Optimize your gameplay experience</p>
             
             <div className="space-y-2 text-sm text-slate-400">
@@ -108,7 +108,7 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <Camera className="text-white" size={24} />
             </div>
-            <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">Screenshot Sharing</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Screenshot Sharing</h3>
             <p className="text-slate-300 mb-6">Share your Summit world with the community</p>
             
             <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 transition-all duration-300">
@@ -121,7 +121,7 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <History className="text-white" size={24} />
             </div>
-            <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">Latest Updates</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Latest Updates</h3>
             <p className="text-slate-300 mb-6">v{latestVersion?.version || "2.3"} - February 2025</p>
             
             <div className="space-y-2 text-sm text-slate-400">
@@ -139,7 +139,7 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <LifeBuoy className="text-white" size={24} />
             </div>
-            <h3 className="font-orbitron font-semibold text-xl mb-4 text-teal-400">Need Help?</h3>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Need Help?</h3>
             <p className="text-slate-300 mb-6">Get support from the community</p>
             
             <div className="space-y-3">

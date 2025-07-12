@@ -37,7 +37,7 @@ export default function Navigation({ isScrolled }: NavigationProps) {
               <Mountain className="text-white" size={20} />
             </div>
             <div>
-              <h1 className="font-orbitron font-bold text-xl text-teal-400">SummitMC</h1>
+              <h1 className="font-pixelbasel font-bold text-xl text-teal-400">SummitMC</h1>
               <p className="text-xs text-slate-400">by SteakTheStake</p>
             </div>
           </div>

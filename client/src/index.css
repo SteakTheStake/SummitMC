@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Pixelbasel';
+  src: url('/fonts/Pixelbasel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --background: hsl(222, 84%, 5%);
@@ -64,8 +71,8 @@
     font-family: 'Inter', sans-serif;
   }
 
-  .font-orbitron {
-    font-family: 'Orbitron', monospace;
+  .font-pixelbasel {
+    font-family: 'Pixelbasel', monospace;
   }
 }
 

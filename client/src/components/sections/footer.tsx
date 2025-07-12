@@ -40,7 +40,7 @@ export default function Footer() {
                 <Mountain className="text-white" size={20} />
               </div>
               <div>
-                <h1 className="font-orbitron font-bold text-xl text-teal-400">SummitMC</h1>
+                <h1 className="font-pixelbasel font-bold text-xl text-teal-400">SummitMC</h1>
                 <p className="text-xs text-slate-400">by SteakTheStake</p>
               </div>
             </div>
@@ -51,7 +51,7 @@ export default function Footer() {
           
           {footerSections.map((section, index) => (
             <div key={index}>
-              <h4 className="font-orbitron font-semibold text-lg mb-4 text-teal-400">{section.title}</h4>
+              <h4 className="font-pixelbasel font-semibold text-lg mb-4 text-teal-400">{section.title}</h4>
               <ul className="space-y-2 text-slate-400">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>

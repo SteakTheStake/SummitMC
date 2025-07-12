@@ -44,7 +44,7 @@ export default function Gallery() {
     <section id="gallery" className="py-20 px-6 bg-slate-800 bg-opacity-50">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="font-orbitron font-bold text-4xl md:text-5xl mb-4">
+          <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
             See The <span className="text-teal-400">Difference</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
@@ -77,7 +77,7 @@ export default function Gallery() {
         {/* Before/After Comparison */}
         <div className="mb-16">
           <div className="glassmorphism p-8 rounded-2xl">
-            <h3 className="font-orbitron font-semibold text-2xl mb-6 text-center">Stone & Terrain Comparison</h3>
+            <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-center">Stone & Terrain Comparison</h3>
             <ComparisonSlider
               beforeImage="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
               afterImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
@@ -96,7 +96,7 @@ export default function Gallery() {
                 alt={`Enhanced ${category.name.toLowerCase()} textures`}
                 className="w-full h-32 object-cover rounded-lg mb-4"
               />
-              <h4 className="font-orbitron font-semibold text-lg mb-2 text-teal-400">{category.name}</h4>
+              <h4 className="font-pixelbasel font-semibold text-lg mb-2 text-teal-400">{category.name}</h4>
               <p className="text-slate-300 text-sm">{category.description}</p>
             </div>
           ))}
