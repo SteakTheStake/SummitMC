@@ -44,9 +44,7 @@ export default function Footer() {
                 <p className="text-xs text-slate-400">by SteakTheStake</p>
               </div>
             </div>
-            <p className="text-slate-400 text-sm">
-              Enhancing Minecraft worlds with realistic textures since 2024.
-            </p>
+            <p className="text-slate-400 font-extralight text-[12px] text-center">'Minecraft' is a trademark of Mojang. This site is not affiliated with Mojang or Microsoft.</p>
           </div>
           
           {footerSections.map((section, index) => (
