@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 
+import _2025_03_10_14_21_53 from "@assets/2025-03-10_14.21.53.webp";
+
 export default function Hero() {
   const { data: stats } = useQuery({
     queryKey: ["/api/downloads/stats"],
@@ -22,16 +24,14 @@ export default function Hero() {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 gradient-bg"></div>
-      
       {/* Background Image */}
       <div className="absolute inset-0 opacity-20">
         <img 
-          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080" 
+          src={_2025_03_10_14_21_53} 
           alt="Minecraft landscape" 
           className="w-full h-full object-cover"
         />
       </div>
-      
       <div className="relative z-10 text-center px-6 animate-fade-in">
         <div className="mb-6">
           <Badge className="version-badge">
@@ -85,7 +85,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      
       {/* Floating elements */}
       <div className="absolute top-20 left-10 w-16 h-16 bg-teal-500 bg-opacity-20 rounded-lg animate-float"></div>
       <div className="absolute bottom-20 right-10 w-12 h-12 bg-teal-400 bg-opacity-20 rounded-lg animate-float" style={{ animationDelay: "1s" }}></div>
