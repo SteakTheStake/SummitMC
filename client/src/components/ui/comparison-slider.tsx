@@ -63,7 +63,7 @@ export default function ComparisonSlider({
     >
       {/* Before Image */}
       <img 
-        src={beforeImage} 
+        src={_2025_03_28_23_03_19} 
         alt="Before comparison"
         className="w-full h-full object-cover"
         draggable={false}
@@ -74,7 +74,7 @@ export default function ComparisonSlider({
         style={{ width: `${sliderPosition}%` }}
       >
         <img 
-          src={_2025_03_28_23_03_19} 
+          src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/minecraft/8/8e/Ruined_Portal_-_Small.png" 
           alt="After comparison"
           className="w-full h-full object-cover"
           draggable={false}
