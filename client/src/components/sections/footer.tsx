@@ -12,10 +12,10 @@ const footerSections = [
   {
     title: "Community",
     links: [
-      { name: "Discord", url: "#" },
+      { name: "Discord", url: "https://discord.gg/M9cmBBGKU8" },
       { name: "Reddit", url: "#" },
       { name: "Screenshots", url: "#" },
-      { name: "Support", url: "#" }
+      { name: "Support", url: "https://discord.gg/M9cmBBGKU8" }
     ]
   },
   {
