@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { MoveHorizontal } from "lucide-react";
 
+import _2025_03_28_23_03_19 from "@assets/2025-03-28_23.03.19.webp";
+
 interface ComparisonSliderProps {
   beforeImage: string;
   afterImage: string;
@@ -66,20 +68,18 @@ export default function ComparisonSlider({
         className="w-full h-full object-cover"
         draggable={false}
       />
-      
       {/* After Image */}
       <div 
         className="after-image"
         style={{ width: `${sliderPosition}%` }}
       >
         <img 
-          src={afterImage} 
+          src={_2025_03_28_23_03_19} 
           alt="After comparison"
           className="w-full h-full object-cover"
           draggable={false}
         />
       </div>
-      
       {/* Slider Handle */}
       <div 
         className="comparison-handle"
@@ -88,7 +88,6 @@ export default function ComparisonSlider({
       >
         <MoveHorizontal className="text-white" size={20} />
       </div>
-      
       {/* Labels */}
       <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 px-3 py-1 rounded-md text-sm pointer-events-none">
         {beforeLabel}
