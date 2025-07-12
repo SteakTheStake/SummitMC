@@ -7,6 +7,7 @@ This is a modern web application for the Summit Minecraft texture pack created b
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Font preference: Custom Pixelbasel font for headings and branding.
 
 ## System Architecture
 
@@ -24,6 +25,7 @@ Preferred communication style: Simple, everyday language.
 - **Database**: PostgreSQL with Drizzle ORM
 - **Database Provider**: Neon Database (@neondatabase/serverless)
 - **Session Management**: express-session with connect-pg-simple for PostgreSQL session store
+- **Storage**: DatabaseStorage class implementing IStorage interface for data persistence
 
 ## Key Components
 
@@ -89,3 +91,16 @@ Preferred communication style: Simple, everyday language.
 - `npm start` - Run production build
 
 The application is designed to be deployed on platforms like Replit, with automatic database provisioning and environment variable management.
+
+## Recent Changes
+
+### January 2025
+- **Database Integration**: Migrated from in-memory storage to PostgreSQL database
+  - Added `server/db.ts` with Neon database configuration
+  - Implemented `DatabaseStorage` class replacing `MemStorage`
+  - Seeded database with initial texture pack data
+  - All API endpoints now use persistent database storage
+- **Font Customization**: Integrated custom Pixelbasel font
+  - Added user-uploaded TTF font file to `/public/fonts/`
+  - Updated all headings and branding to use custom font
+  - Maintains indie aesthetic with pixel-style typography

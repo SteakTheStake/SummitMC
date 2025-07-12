@@ -1,4 +1,6 @@
 import { users, downloads, versions, screenshots, type User, type InsertUser, type Download, type Version, type Screenshot, type InsertDownload, type InsertVersion, type InsertScreenshot } from "@shared/schema";
+import { db } from "./db";
+import { eq, and, desc } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -203,4 +205,84 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async getDownloadStats(): Promise<Download[]> {
+    return await db.select().from(downloads);
+  }
+
+  async incrementDownload(resolution: string, platform: string): Promise<Download> {
+    const [existing] = await db
+      .select()
+      .from(downloads)
+      .where(and(eq(downloads.resolution, resolution), eq(downloads.platform, platform)));
+
+    if (existing) {
+      const [updated] = await db
+        .update(downloads)
+        .set({ 
+          count: existing.count + 1,
+          lastUpdated: new Date()
+        })
+        .where(eq(downloads.id, existing.id))
+        .returning();
+      return updated;
+    }
+
+    const [newDownload] = await db
+      .insert(downloads)
+      .values({
+        resolution,
+        platform,
+        count: 1
+      })
+      .returning();
+    return newDownload;
+  }
+
+  async getVersions(): Promise<Version[]> {
+    return await db.select().from(versions).orderBy(desc(versions.releaseDate));
+  }
+
+  async getLatestVersion(): Promise<Version | undefined> {
+    const [version] = await db.select().from(versions).where(eq(versions.isLatest, true));
+    return version || undefined;
+  }
+
+  async getScreenshots(category?: string): Promise<Screenshot[]> {
+    if (category) {
+      return await db.select().from(screenshots).where(eq(screenshots.category, category));
+    }
+    return await db.select().from(screenshots);
+  }
+
+  async addScreenshot(screenshot: InsertScreenshot): Promise<Screenshot> {
+    const [newScreenshot] = await db
+      .insert(screenshots)
+      .values({
+        ...screenshot,
+        description: screenshot.description || null
+      })
+      .returning();
+    return newScreenshot;
+  }
+}
+
+export const storage = new DatabaseStorage();
