@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 
-import _2025_03_10_14_21_53 from "@assets/2025-03-10_14.21.53.webp";
+import heroBackground from "@assets/2025-06-11_17.27.26_1752292199051.webp";
 
 export default function Hero() {
   const { data: stats } = useQuery({
@@ -27,8 +27,8 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 opacity-20">
         <img 
-          src={_2025_03_10_14_21_53} 
-          alt="Minecraft landscape" 
+          src={heroBackground} 
+          alt="Summit texture pack showcase" 
           className="w-full h-full object-cover"
         />
       </div>

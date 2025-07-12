@@ -3,6 +3,18 @@ import { Button } from "@/components/ui/button";
 import ComparisonSlider from "@/components/ui/comparison-slider";
 import { useQuery } from "@tanstack/react-query";
 
+import medievalTower from "@assets/2025-02-13_02.00.29_1752292199050.webp";
+import mountainVillage from "@assets/2025-03-10_14.21.53_1752292199050.webp";
+import modernHouse from "@assets/2025-03-20_17.23.13_1752292199050.webp";
+import woodenBridge from "@assets/2025-03-20_17.26.53_1752292199050.webp";
+import undergroundCave from "@assets/2025-03-20_21.04.00_1752292199050.webp";
+import netherScene from "@assets/2025-03-28_23.03.19_1752292199050.webp";
+import turtleBeach from "@assets/2025-03-28_23.15.23_1752292199051.webp";
+import cherryTrees from "@assets/2025-05-02_23.46.20_1752292199051.webp";
+import snowyMountain from "@assets/2025-06-11_17.26.29_1752292199051.webp";
+import interiorDesign from "@assets/2025-06-11_17.26.55_1752292199051.webp";
+import mountainView from "@assets/2025-06-11_17.27.26_1752292199051.webp";
+
 const resolutions = [
   { name: "16x", active: true },
   { name: "32x", active: false },
@@ -14,22 +26,22 @@ const textureCategories = [
   {
     name: "Terrain",
     description: "Dirt, grass, stone, and all basic terrain blocks with enhanced detail",
-    imageUrl: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+    imageUrl: snowyMountain
   },
   {
     name: "Wood Types",
     description: "All wood planks, logs, and tree-related blocks with natural grain",
-    imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+    imageUrl: woodenBridge
   },
   {
     name: "Ores & Minerals",
     description: "All ore blocks retextured with realistic mineral patterns",
-    imageUrl: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+    imageUrl: undergroundCave
   },
   {
     name: "Nether Blocks",
     description: "Crimson/warped forests, soul fire, blackstone, and nether content",
-    imageUrl: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+    imageUrl: netherScene
   }
 ];
 
@@ -77,13 +89,78 @@ export default function Gallery() {
         {/* Before/After Comparison */}
         <div className="mb-16">
           <div className="glassmorphism p-8 rounded-2xl">
-            <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-center">Stone & Terrain Comparison</h3>
+            <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-center">Mountain Terrain Enhancement</h3>
             <ComparisonSlider
-              beforeImage="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              afterImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              beforeLabel="Vanilla"
-              afterLabel="Summit"
+              beforeImage={mountainVillage}
+              afterImage={snowyMountain}
+              beforeLabel="Standard View"
+              afterLabel="Summit Enhanced"
             />
+          </div>
+        </div>
+
+        {/* Featured Screenshots Grid */}
+        <div className="mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="glassmorphism p-4 rounded-xl">
+              <img 
+                src={medievalTower} 
+                alt="Medieval tower with enhanced textures"
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Medieval Architecture</h4>
+              <p className="text-slate-300 text-sm">Enhanced stone and wood textures bring medieval builds to life</p>
+            </div>
+            
+            <div className="glassmorphism p-4 rounded-xl">
+              <img 
+                src={mountainVillage} 
+                alt="Mountain village with realistic textures"
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Mountain Villages</h4>
+              <p className="text-slate-300 text-sm">Realistic terrain textures create stunning mountain landscapes</p>
+            </div>
+            
+            <div className="glassmorphism p-4 rounded-xl">
+              <img 
+                src={modernHouse} 
+                alt="Modern house with enhanced materials"
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Modern Builds</h4>
+              <p className="text-slate-300 text-sm">Perfect textures for contemporary architectural styles</p>
+            </div>
+            
+            <div className="glassmorphism p-4 rounded-xl">
+              <img 
+                src={cherryTrees} 
+                alt="Cherry trees with enhanced foliage"
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Cherry Groves</h4>
+              <p className="text-slate-300 text-sm">Beautiful cherry tree textures with realistic foliage</p>
+            </div>
+            
+            <div className="glassmorphism p-4 rounded-xl">
+              <img 
+                src={turtleBeach} 
+                alt="Beach scene with realistic water and sand"
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Ocean Biomes</h4>
+              <p className="text-slate-300 text-sm">Enhanced water and sand textures for coastal builds</p>
+            </div>
+            
+            <div className="glassmorphism p-4 rounded-xl">
+              <img 
+                src={interiorDesign} 
+                alt="Interior design with detailed textures"
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Interior Design</h4>
+              <p className="text-slate-300 text-sm">Detailed textures perfect for interior decoration</p>
+            </div>
           </div>
         </div>
         

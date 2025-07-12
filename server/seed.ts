@@ -52,25 +52,81 @@ async function seedDatabase() {
   // Seed screenshots
   const screenshotsData = [
     {
-      imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      title: "Mountain Landscape",
-      description: "Beautiful mountain vista with Summit textures",
-      category: "terrain",
+      imageUrl: "/attached_assets/2025-02-13_02.00.29_1752292199050.webp",
+      title: "Medieval Tower",
+      description: "Enhanced stone and wood textures bring medieval builds to life",
+      category: "builds",
       resolution: "16x"
     },
     {
-      imageUrl: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      title: "Stone Formations",
-      description: "Enhanced stone textures in action",
+      imageUrl: "/attached_assets/2025-03-10_14.21.53_1752292199050.webp",
+      title: "Mountain Village",
+      description: "Realistic terrain textures create stunning mountain landscapes",
       category: "terrain",
       resolution: "32x"
     },
     {
-      imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-      title: "Forest Scene",
-      description: "Wood and foliage textures",
-      category: "nature",
+      imageUrl: "/attached_assets/2025-03-20_17.23.13_1752292199050.webp",
+      title: "Modern House",
+      description: "Perfect textures for contemporary architectural styles",
+      category: "builds",
       resolution: "64x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-03-20_17.26.53_1752292199050.webp",
+      title: "Wooden Bridge",
+      description: "Natural wood grain textures with realistic lighting",
+      category: "nature",
+      resolution: "16x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-03-20_21.04.00_1752292199050.webp",
+      title: "Underground Cave",
+      description: "Enhanced ore and mineral textures in cave systems",
+      category: "terrain",
+      resolution: "32x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-03-28_23.03.19_1752292199050.webp",
+      title: "Nether Scene",
+      description: "Crimson forests and nether blocks with enhanced detail",
+      category: "nether",
+      resolution: "64x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-03-28_23.15.23_1752292199051.webp",
+      title: "Turtle Beach",
+      description: "Enhanced water and sand textures for coastal builds",
+      category: "nature",
+      resolution: "16x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-05-02_23.46.20_1752292199051.webp",
+      title: "Cherry Grove",
+      description: "Beautiful cherry tree textures with realistic foliage",
+      category: "nature",
+      resolution: "32x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-06-11_17.26.29_1752292199051.webp",
+      title: "Snowy Mountain",
+      description: "Enhanced snow and ice textures in mountain biomes",
+      category: "terrain",
+      resolution: "64x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-06-11_17.26.55_1752292199051.webp",
+      title: "Interior Design",
+      description: "Detailed textures perfect for interior decoration",
+      category: "builds",
+      resolution: "16x"
+    },
+    {
+      imageUrl: "/attached_assets/2025-06-11_17.27.26_1752292199051.webp",
+      title: "Mountain Vista",
+      description: "Breathtaking mountain views with enhanced terrain",
+      category: "terrain",
+      resolution: "32x"
     }
   ];
 
