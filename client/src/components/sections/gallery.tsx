@@ -149,7 +149,7 @@ export default function Gallery() {
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
               <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Ocean Biomes</h4>
-              <p className="text-slate-300 text-sm">Enhanced water and sand textures for coastal builds</p>
+              <p className="text-slate-300 text-sm">Enhanced coral and sand textures for coastal builds</p>
             </div>
             
             <div className="glassmorphism p-4 rounded-xl">
