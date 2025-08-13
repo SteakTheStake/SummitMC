@@ -57,10 +57,10 @@ export default function Gallery() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            See The <span className="minecraft-green">Difference</span>
+            Before & <span className="minecraft-green">After</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Experience the transformation with our before/after comparisons
+            Slide to see how much love I put into each texture - the difference amazes me every time!
           </p>
         </div>
         

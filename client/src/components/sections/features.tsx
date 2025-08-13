@@ -7,33 +7,33 @@ import cherryTrees from "@assets/2025-05-02_23.46.20_1752292199051.webp";
 const features = [
   {
     icon: Eye,
-    title: "Balanced Realism",
-    description: "Enhanced textures that maintain Minecraft's iconic aesthetic while adding realistic details that feel natural and immersive."
+    title: "My Vision",
+    description: "I spent countless hours balancing realism with Minecraft's charm. Each block tells a story while keeping that blocky magic we all love."
   },
   {
     icon: Gauge,
-    title: "Optimized Performance",
-    description: "Lightweight design ensures smooth gameplay across different systems without compromising visual quality."
+    title: "Performance First",
+    description: "As someone who plays on different setups, I made sure Summit runs smooth everywhere - from laptops to gaming rigs."
   },
   {
     icon: Leaf,
-    title: "Natural Beauty",
-    description: "Focus on making the world more vivid yet familiar, with enhanced terrain and environmental textures."
+    title: "Nature's Detail",
+    description: "Every leaf, every stone was personally crafted to make your adventures feel more immersive and beautiful."
   },
   {
     icon: Puzzle,
-    title: "Mod Support",
-    description: "Works seamlessly with Continuity mod for enhanced features and connects with custom entity models."
+    title: "Community Friendly",
+    description: "Built to work with your favorite mods like Continuity and EMF because I know how we all love to customize our experience."
   },
   {
     icon: RotateCcw,
-    title: "Regular Updates",
-    description: "Constantly evolving with new textures, improvements, and support for the latest Minecraft versions."
+    title: "Always Improving",
+    description: "This is my ongoing love project - I'm constantly refining textures based on community feedback and my own gameplay."
   },
   {
     icon: Layers,
-    title: "Multiple Resolutions",
-    description: "Choose from 16x, 32x, 64x, or 512x resolutions to match your system's capabilities and preferences."
+    title: "Options for Everyone",
+    description: "From 16x for everyday play to 512x for those epic screenshot sessions - I've got your back no matter your setup."
   }
 ];
 
@@ -43,10 +43,10 @@ export default function Features() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Why Choose <span className="minecraft-green">Summit?</span>
+            Why I Created <span className="minecraft-green">Summit</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Carefully crafted textures that bring new life to your Minecraft world
+            My personal journey to make Minecraft feel more alive while staying true to its soul
           </p>
         </div>
         
@@ -83,10 +83,10 @@ export default function Features() {
         {/* Showcase Examples */}
         <div className="text-center mb-12">
           <h3 className="font-pixelbasel font-bold text-3xl mb-4">
-            See It In <span className="minecraft-green">Action</span>
+            My Favorite <span className="minecraft-green">Builds</span>
           </h3>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Real builds showcasing the Summit texture pack's capabilities
+            Screenshots from my own worlds where Summit really shines
           </p>
         </div>
 
@@ -102,8 +102,8 @@ export default function Features() {
                 <span className="text-white text-sm font-semibold">Medieval Style</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-green">Castle & Towers</h4>
-            <p className="text-slate-300">Enhanced stone textures make medieval builds look more authentic and detailed</p>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-green">Medieval Dreams</h4>
+            <p className="text-slate-300">My go-to style - I love how the stone textures make castles feel ancient and weathered</p>
           </div>
 
           <div className="glassmorphism p-6 rounded-2xl">
@@ -117,8 +117,8 @@ export default function Features() {
                 <span className="text-white text-sm font-semibold">Modern Style</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-blue">Contemporary Homes</h4>
-            <p className="text-slate-300">Clean lines and modern materials enhanced with realistic lighting and shadows</p>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-blue">Clean & Modern</h4>
+            <p className="text-slate-300">Sometimes I want sleek builds - Summit's materials work great for contemporary designs too</p>
           </div>
 
           <div className="glassmorphism p-6 rounded-2xl">
@@ -132,8 +132,8 @@ export default function Features() {
                 <span className="text-white text-sm font-semibold">Nature</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-gold">Natural Landscapes</h4>
-            <p className="text-slate-300">Vibrant foliage and natural textures that bring the outdoors to life</p>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-gold">Cherry Bliss</h4>
+            <p className="text-slate-300">The cherry biome was my testing ground - I'm really proud of how lush it feels now</p>
           </div>
         </div>
       </div>

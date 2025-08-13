@@ -10,7 +10,7 @@ const resolutionOptions = [
   {
     resolution: "16x",
     label: "16x Resolution",
-    description: "Recommended for most users",
+    description: "Perfect for everyday adventures",
     popular: true,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
@@ -18,7 +18,7 @@ const resolutionOptions = [
   {
     resolution: "32x",
     label: "32x Resolution",
-    description: "Enhanced detail for better hardware",
+    description: "My personal sweet spot for detail",
     popular: false,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
@@ -26,7 +26,7 @@ const resolutionOptions = [
   {
     resolution: "64x",
     label: "64x Resolution",
-    description: "High definition for powerful systems",
+    description: "For when you want the extra wow factor",
     popular: false,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
@@ -34,7 +34,7 @@ const resolutionOptions = [
   {
     resolution: "512x",
     label: "512x Resolution",
-    description: "Ultra HD with PBR/POM support",
+    description: "Screenshot magic (needs a beefy PC!)",
     popular: false,
     available: true,
     platforms: ["planetminecraft"],
@@ -94,10 +94,10 @@ export default function Download() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Download <span className="minecraft-green">Summit</span>
+            Get <span className="minecraft-green">Summit</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Choose your preferred resolution and download platform
+            Pick the resolution that fits your setup - I recommend starting with 16x!
           </p>
         </div>
         

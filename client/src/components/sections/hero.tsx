@@ -45,10 +45,10 @@ export default function Hero() {
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">
-          Experience realistic textures that enhance your world without losing Minecraft's charm. 
+          Handcrafted by SteakTheStake with love for the Minecraft community. Every texture tells a story. 
           <span className="minecraft-green font-semibold">
             {stats?.totalDownloads ? `${(stats.totalDownloads / 1000).toFixed(1)}k+` : "13.9k+"} downloads
-          </span> and counting.
+          </span> from fellow builders.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
