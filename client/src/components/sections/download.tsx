@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import ModRequirementsModal from "@/components/ui/mod-requirements-modal";
+import ModrinthStats from "./modrinth-stats";
 
 const resolutionOptions = [
   {
@@ -59,11 +60,26 @@ const quickInstallSteps = [
 export default function Download() {
   const queryClient = useQueryClient();
   
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<{
+    stats: any[];
+    totalDownloads: number;
+    realTimeDownloads: number;
+    modrinth: {
+      downloads: number;
+      followers: number;
+      versions: number;
+    } | null;
+  }>({
     queryKey: ["/api/downloads/stats"],
   });
 
-  const { data: latestVersion } = useQuery({
+  const { data: latestVersion } = useQuery<{
+    id: number;
+    version: string;
+    resolution: string;
+    changelog: string;
+    source?: string;
+  }>({
     queryKey: ["/api/versions/latest"],
   });
 
@@ -99,6 +115,11 @@ export default function Download() {
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Pick the resolution that fits your setup - I recommend starting with 16x!
           </p>
+        </div>
+
+        {/* Live Modrinth Stats */}
+        <div className="mb-12 max-w-md mx-auto">
+          <ModrinthStats />
         </div>
         
         <div className="grid lg:grid-cols-2 gap-12">

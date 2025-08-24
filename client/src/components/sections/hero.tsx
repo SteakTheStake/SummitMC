@@ -6,11 +6,26 @@ import { useQuery } from "@tanstack/react-query";
 import heroBackground from "@assets/2025-06-11_17.27.26_1752292199051.webp";
 
 export default function Hero() {
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<{
+    stats: any[];
+    totalDownloads: number;
+    realTimeDownloads: number;
+    modrinth: {
+      downloads: number;
+      followers: number;
+      versions: number;
+    } | null;
+  }>({
     queryKey: ["/api/downloads/stats"],
   });
 
-  const { data: latestVersion } = useQuery({
+  const { data: latestVersion } = useQuery<{
+    id: number;
+    version: string;
+    resolution: string;
+    changelog: string;
+    source?: string;
+  }>({
     queryKey: ["/api/versions/latest"],
   });
 
@@ -47,8 +62,13 @@ export default function Hero() {
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">
           Handcrafted by SteakTheStake with love for the Minecraft community. Every texture tells a story. 
           <span className="minecraft-green font-semibold">
-            {stats?.totalDownloads ? `${(stats.totalDownloads / 1000).toFixed(1)}k+` : "13.9k+"} downloads
+            {stats?.realTimeDownloads ? `${(stats.realTimeDownloads / 1000).toFixed(1)}k+` : "13.9k+"} downloads
           </span> from fellow builders.
+          {stats?.modrinth && (
+            <span className="block text-sm text-slate-400 mt-1">
+              Live from Modrinth • {stats.modrinth.followers} followers
+            </span>
+          )}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

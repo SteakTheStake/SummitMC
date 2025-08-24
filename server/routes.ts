@@ -3,15 +3,35 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertScreenshotSchema } from "@shared/schema";
 import { z } from "zod";
+import { modrinthService } from "./modrinth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Get download statistics
+  // Get download statistics (with real-time Modrinth data)
   app.get("/api/downloads/stats", async (req, res) => {
     try {
-      const stats = await storage.getDownloadStats();
-      const totalDownloads = stats.reduce((sum, stat) => sum + stat.count, 0);
-      res.json({ stats, totalDownloads });
+      // Get local database stats
+      const localStats = await storage.getDownloadStats();
+      const localTotalDownloads = localStats.reduce((sum, stat) => sum + stat.count, 0);
+      
+      // Get real-time Modrinth stats
+      const modrinthStats = await modrinthService.getProjectStats();
+      
+      // Combine local and Modrinth data
+      const response = {
+        stats: localStats,
+        totalDownloads: localTotalDownloads,
+        modrinth: modrinthStats ? {
+          downloads: modrinthStats.downloads,
+          followers: modrinthStats.followers,
+          versions: modrinthStats.versions
+        } : null,
+        // Use Modrinth total if available, otherwise fall back to local
+        realTimeDownloads: modrinthStats?.downloads || localTotalDownloads
+      };
+      
+      res.json(response);
     } catch (error) {
+      console.error('Error fetching download statistics:', error);
       res.status(500).json({ message: "Failed to fetch download statistics" });
     }
   });
@@ -41,15 +61,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get latest version
+  // Get latest version (with real-time Modrinth data)
   app.get("/api/versions/latest", async (req, res) => {
     try {
-      const latestVersion = await storage.getLatestVersion();
-      if (!latestVersion) {
+      // Get local version data
+      const localLatestVersion = await storage.getLatestVersion();
+      
+      // Get real-time Modrinth version data
+      const modrinthLatestVersion = await modrinthService.getLatestVersion();
+      
+      // Prefer Modrinth data if available, fall back to local
+      if (modrinthLatestVersion) {
+        res.json({
+          ...localLatestVersion,
+          version: modrinthLatestVersion.version,
+          downloads: modrinthLatestVersion.downloads,
+          changelog: modrinthLatestVersion.changelog || localLatestVersion?.changelog,
+          source: 'modrinth'
+        });
+      } else if (localLatestVersion) {
+        res.json({
+          ...localLatestVersion,
+          source: 'local'
+        });
+      } else {
         return res.status(404).json({ message: "No latest version found" });
       }
-      res.json(latestVersion);
     } catch (error) {
+      console.error('Error fetching latest version:', error);
       res.status(500).json({ message: "Failed to fetch latest version" });
     }
   });
@@ -62,6 +101,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(screenshots);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch screenshots" });
+    }
+  });
+
+  // Get real-time Modrinth stats
+  app.get("/api/modrinth/stats", async (req, res) => {
+    try {
+      const projectStats = await modrinthService.getProjectStats();
+      const versionStats = await modrinthService.getVersionStats();
+      const latestVersion = await modrinthService.getLatestVersion();
+      
+      res.json({
+        project: projectStats,
+        versions: versionStats,
+        latest: latestVersion,
+        lastUpdated: new Date().toISOString()
+      });
+    } catch (error) {
+      console.error('Error fetching Modrinth stats:', error);
+      res.status(500).json({ message: "Failed to fetch Modrinth statistics" });
     }
   });
 
