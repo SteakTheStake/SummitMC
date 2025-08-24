@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a modern web application for the Summit Minecraft texture pack created by SteakTheStake. It's built as a single-page application showcasing the texture pack with download statistics, galleries, and community tools. The application uses a full-stack architecture with React frontend and Express backend.
+This is a modern web application for the Summit Minecraft texture pack created by Limitless Designs. It's built as a single-page application showcasing the texture pack with download statistics, galleries, and community tools. The application uses a full-stack architecture with React frontend and Express backend.
 
 ## User Preferences
 

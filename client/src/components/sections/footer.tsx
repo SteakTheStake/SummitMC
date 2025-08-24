@@ -36,12 +36,10 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                <Mountain className="text-white" size={20} />
-              </div>
+              <img src="/limitless-logo.png" alt="Limitless Designs" className="h-10 w-auto" />
               <div>
-                <h1 className="font-pixelbasel font-bold text-xl minecraft-green">SummitMC</h1>
-                <p className="text-xs text-slate-400">made with ❤️ by SteakTheStake</p>
+                <h1 className="font-pixelbasel font-bold text-xl bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Summit</h1>
+                <p className="text-xs text-slate-400">Limitless Designs</p>
               </div>
             </div>
             <p className="text-slate-400 font-extralight text-[12px] text-center">Minecraft At It's Peak</p>
@@ -72,8 +70,8 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400 text-sm">
-          <p className="mb-2">Made with passion by SteakTheStake • Still updating and improving!</p>
-          <p>'Minecraft' is a trademark of Mojang. This is a fan-made texture pack, not affiliated with Mojang or Microsoft.</p>
+          <p className="mb-2">© 2025 Limitless Designs</p>
+          <p>'Minecraft' is a trademark of Mojang. Not affiliated with Mojang or Microsoft.</p>
         </div>
       </div>
     </footer>

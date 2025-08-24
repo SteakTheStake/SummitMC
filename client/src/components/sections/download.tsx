@@ -10,32 +10,32 @@ import ModrinthStats from "./modrinth-stats";
 const resolutionOptions = [
   {
     resolution: "16x",
-    label: "16x Resolution",
-    description: "Perfect for everyday adventures",
+    label: "16x",
+    description: "Standard",
     popular: true,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
   },
   {
     resolution: "32x",
-    label: "32x Resolution",
-    description: "My personal sweet spot for detail",
+    label: "32x",
+    description: "Enhanced",
     popular: false,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
   },
   {
     resolution: "64x",
-    label: "64x Resolution",
-    description: "For when you want the extra wow factor",
+    label: "64x",
+    description: "High detail",
     popular: false,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
   },
   {
     resolution: "512x",
-    label: "512x Resolution",
-    description: "Screenshot magic (needs a beefy PC!)",
+    label: "512x",
+    description: "Ultra HD",
     popular: false,
     available: true,
     platforms: ["planetminecraft"],
@@ -110,10 +110,10 @@ export default function Download() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Get <span className="minecraft-green">Summit</span>
+            <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Download</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Pick the resolution that fits your setup - I recommend starting with 16x!
+            Choose resolution
           </p>
         </div>
 

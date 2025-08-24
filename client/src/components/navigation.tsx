@@ -33,12 +33,10 @@ export default function Navigation({ isScrolled }: NavigationProps) {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
-              <Mountain className="text-white" size={20} />
-            </div>
+            <img src="/limitless-logo.png" alt="Limitless Designs" className="h-10 w-auto" />
             <div>
-              <h1 className="font-pixelbasel font-bold text-xl text-teal-400">SummitMC</h1>
-              <p className="text-xs text-slate-400">by SteakTheStake</p>
+              <h1 className="font-pixelbasel font-bold text-xl bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Summit</h1>
+              <p className="text-xs text-slate-400">Limitless Designs</p>
             </div>
           </div>
           

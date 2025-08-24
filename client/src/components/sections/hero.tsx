@@ -55,20 +55,14 @@ export default function Hero() {
         </div>
         
         <h1 className="font-pixelbasel font-black text-5xl md:text-7xl mb-4">
-          <span className="text-white">Minecraft At Its</span>
-          <span className="minecraft-green block">Peak</span>
+          <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Summit</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">
-          Handcrafted by SteakTheStake with love for the Minecraft community. Every texture tells a story. 
+          Premium textures by Limitless Designs. 
           <span className="minecraft-green font-semibold">
-            {stats?.realTimeDownloads ? `${(stats.realTimeDownloads / 1000).toFixed(1)}k+` : "13.9k+"} downloads
-          </span> from fellow builders.
-          {stats?.modrinth && (
-            <span className="block text-sm text-slate-400 mt-1">
-              Live from Modrinth • {stats.modrinth.followers} followers
-            </span>
-          )}
+            {stats?.realTimeDownloads ? `${(stats.realTimeDownloads / 1000).toFixed(1)}k` : "13.9k"} downloads
+          </span>
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

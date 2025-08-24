@@ -39,10 +39,10 @@ export default function Tools() {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
-            Setup <span className="minecraft-green">Help</span>
+            <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Setup</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-            Need help getting Summit running? I've got you covered with these handy tools!
+            Installation guides
           </p>
         </div>
         
@@ -52,8 +52,8 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6">
               <CheckCircle className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-green">Version Checker</h3>
-            <p className="text-slate-300 mb-6">Make sure Summit works with your Minecraft version!</p>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-green">Versions</h3>
+            <p className="text-slate-300 mb-6">Compatible versions</p>
             
             <div className="space-y-3">
               {compatibilityVersions.map((version, index) => (
@@ -72,8 +72,8 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
               <Book className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-blue">Easy Install</h3>
-            <p className="text-slate-300 mb-6">First time installing? Follow my simple steps!</p>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-blue">Install</h3>
+            <p className="text-slate-300 mb-6">Steps</p>
             
             <div className="space-y-2 text-sm text-slate-400">
               {installationSteps.map((step, index) => (
@@ -90,8 +90,8 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-6">
               <Rocket className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-gold">Smooth Gameplay</h3>
-            <p className="text-slate-300 mb-6">Pro tips to keep your FPS happy with Summit</p>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-gold">Performance</h3>
+            <p className="text-slate-300 mb-6">Tips</p>
             
             <div className="space-y-2 text-sm text-slate-400">
               {performanceTips.map((tip, index) => (
