@@ -87,7 +87,7 @@ interface ModrinthVersion {
 
 export class ModrinthService {
   private readonly baseUrl = 'https://api.modrinth.com/v2';
-  private readonly projectSlug = 'faithful'; // Using Faithful as example - replace with actual Summit project slug when available
+  private readonly projectSlug = 'summit';
   private cache: Map<string, { data: any; timestamp: number }> = new Map();
   private readonly cacheTimeout = 5 * 60 * 1000; // 5 minutes cache
   

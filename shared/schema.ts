@@ -36,6 +36,22 @@ export const screenshots = pgTable("screenshots", {
   uploadedAt: timestamp("uploaded_at").defaultNow(),
 });
 
+// Site content management table
+export const siteContent = pgTable("site_content", {
+  id: serial("id").primaryKey(),
+  section: text("section").notNull().unique(), // e.g., 'hero', 'features', 'creator'
+  content: text("content").notNull(), // JSON string containing the content
+  lastUpdated: timestamp("last_updated").defaultNow(),
+});
+
+// Admin sessions table for simple password-based authentication
+export const adminSessions = pgTable("admin_sessions", {
+  id: serial("id").primaryKey(),
+  sessionToken: text("session_token").notNull().unique(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -55,11 +71,25 @@ export const insertScreenshotSchema = createInsertSchema(screenshots).omit({
   uploadedAt: true,
 });
 
+export const insertSiteContentSchema = createInsertSchema(siteContent).omit({
+  id: true,
+  lastUpdated: true,
+});
+
+export const insertAdminSessionSchema = createInsertSchema(adminSessions).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type Download = typeof downloads.$inferSelect;
 export type Version = typeof versions.$inferSelect;
 export type Screenshot = typeof screenshots.$inferSelect;
+export type SiteContent = typeof siteContent.$inferSelect;
+export type AdminSession = typeof adminSessions.$inferSelect;
 export type InsertDownload = z.infer<typeof insertDownloadSchema>;
 export type InsertVersion = z.infer<typeof insertVersionSchema>;
 export type InsertScreenshot = z.infer<typeof insertScreenshotSchema>;
+export type InsertSiteContent = z.infer<typeof insertSiteContentSchema>;
+export type InsertAdminSession = z.infer<typeof insertAdminSessionSchema>;
