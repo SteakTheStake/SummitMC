@@ -91,7 +91,7 @@ export default function Hero() {
           </div>
           <div className="flex items-center gap-2">
             <Layers className="minecraft-blue" size={16} />
-            <span>16x - 512x</span>
+            <span>16x - 64x</span>
           </div>
           <div className="flex items-center gap-2">
             <Zap className="minecraft-gold" size={16} />

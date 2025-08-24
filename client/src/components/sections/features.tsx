@@ -33,7 +33,7 @@ const features = [
   {
     icon: Layers,
     title: "Multiple Resolutions",
-    description: "16x to 512x available."
+    description: "16x to 64x available."
   }
 ];
 

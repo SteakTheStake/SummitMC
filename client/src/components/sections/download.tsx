@@ -31,15 +31,6 @@ const resolutionOptions = [
     popular: false,
     available: true,
     platforms: ["modrinth", "planetminecraft"]
-  },
-  {
-    resolution: "512x",
-    label: "512x",
-    description: "Ultra HD",
-    popular: false,
-    available: true,
-    platforms: ["planetminecraft"],
-    premium: true
   }
 ];
 
@@ -145,11 +136,7 @@ export default function Download() {
                             Most Popular
                           </Badge>
                         )}
-                        {option.premium && (
-                          <Badge variant="outline" className="text-amber-400 border-amber-400">
-                            PBR/POM
-                          </Badge>
-                        )}
+
                       </div>
                     </div>
                     
@@ -170,14 +157,11 @@ export default function Download() {
                       {option.platforms.includes("planetminecraft") && (
                         <Button
                           onClick={() => handleDownload(option.resolution, "planetminecraft", getDownloadUrl(option.resolution, "planetminecraft"))}
-                          variant={option.premium ? "default" : "outline"}
-                          className={`flex-1 ${option.premium 
-                            ? "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700"
-                            : "border-slate-600 hover:bg-slate-700"
-                          } transition-all duration-300`}
+                          variant="outline"
+                          className="flex-1 border-slate-600 hover:bg-slate-700 transition-all duration-300"
                         >
                           <ExternalLink className="mr-2" size={16} />
-                          {option.premium ? "PlanetMinecraft" : "PMC"}
+                          PMC
                         </Button>
                       )}
                     </div>
