@@ -304,6 +304,7 @@ export class DatabaseStorage implements IStorage {
           lastName: userData.lastName,
           profileImageUrl: userData.profileImageUrl,
           isAdmin: false,
+          password: "", // Set empty password for OAuth users
         })
         .returning();
       return newUser;
