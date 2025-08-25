@@ -113,7 +113,7 @@ export async function setupAuth(app: Express) {
   app.get("/api/login", (req, res, next) => {
     console.log("Login attempt for hostname:", req.hostname);
     const domain = replitDomains.split(",")[0]; // Use first registered domain
-    console.log("Available strategies:", Object.keys(passport._strategies || {}));
+    console.log("Available strategies:", Object.keys((passport as any)._strategies || {}));
     console.log("Using strategy:", `replitauth:${domain}`);
     
     passport.authenticate(`replitauth:${domain}`, {

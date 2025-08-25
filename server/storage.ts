@@ -144,7 +144,18 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { 
+      id, 
+      email: insertUser.email ?? null,
+      firstName: insertUser.firstName ?? null,
+      lastName: insertUser.lastName ?? null,
+      profileImageUrl: insertUser.profileImageUrl ?? null,
+      isAdmin: insertUser.isAdmin ?? null,
+      username: insertUser.username ?? null,
+      password: insertUser.password ?? null,
+      createdAt: insertUser.createdAt ?? null,
+      updatedAt: insertUser.updatedAt ?? null
+    };
     this.users.set(id, user);
     return user;
   }
@@ -235,6 +246,11 @@ export class MemStorage implements IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
   async getUser(id: number): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user || undefined;
@@ -301,10 +317,6 @@ export class DatabaseStorage implements IStorage {
     return user || undefined;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, parseInt(id)));
-    return user || undefined;
-  }
 
   async getDownloadStats(): Promise<Download[]> {
     return await db.select().from(downloads);

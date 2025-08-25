@@ -18,14 +18,14 @@ export const sessions = pgTable(
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   email: varchar("email").unique(),
-  firstName: varchar("first_name"),
-  lastName: varchar("last_name"),
-  profileImageUrl: varchar("profile_image_url"),
-  isAdmin: boolean("is_admin").default(false),
+  firstName: varchar("firstname"),
+  lastName: varchar("lastname"),
+  profileImageUrl: varchar("profileimageurl"),
+  isAdmin: boolean("isadmin").default(false),
   username: text("username").unique(),
   password: text("password").default(""),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("createdat").defaultNow(),
+  updatedAt: timestamp("updatedat").defaultNow(),
 });
 
 export const downloads = pgTable("downloads", {
