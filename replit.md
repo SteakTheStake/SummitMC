@@ -95,6 +95,22 @@ The application is designed to be deployed on platforms like Replit, with automa
 ## Recent Changes
 
 ### January 2025
+- **Multi-Page Layout**: Converted single-page to multi-page application
+  - Created separate pages for Home, Features, Gallery, Download, About
+  - Implemented MainLayout wrapper with consistent navigation and footer
+  - Added proper routing with wouter for seamless page transitions
+- **Enhanced Homepage Gallery**: Added interactive swipe functionality
+  - Touch swipe gestures for mobile navigation
+  - Desktop navigation buttons with left/right arrows
+  - Keyboard navigation support (arrow keys)
+  - Clickable dot indicators for direct image selection
+  - Auto-rotation pause when user interacts, resumes after 10 seconds
+- **Admin Dashboard**: Created comprehensive content management system at `/dash`
+  - 5-tab interface: Overview, Version Management, Gallery, Analytics, Settings
+  - Real-time statistics display with Modrinth API integration
+  - Full CRUD operations for versions and screenshots
+  - Quick actions and activity tracking
+  - Semi-hidden URL for secure access
 - **Database Integration**: Migrated from in-memory storage to PostgreSQL database
   - Added `server/db.ts` with Neon database configuration
   - Implemented `DatabaseStorage` class replacing `MemStorage`
