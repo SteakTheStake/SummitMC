@@ -9,6 +9,7 @@ import Features from "@/pages/Features";
 import Gallery from "@/pages/Gallery";
 import Download from "@/pages/Download";
 import About from "@/pages/About";
+import Admin from "@/pages/Admin";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/gallery" component={Gallery} />
       <Route path="/download" component={Download} />
       <Route path="/about" component={About} />
+      <Route path="/admin-limitless-summit-dashboard" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );

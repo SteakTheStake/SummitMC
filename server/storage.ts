@@ -203,6 +203,35 @@ export class MemStorage implements IStorage {
     this.screenshots.set(newScreenshot.id, newScreenshot);
     return newScreenshot;
   }
+
+  // Admin methods for versions
+  async createVersion(versionData: Omit<Version, 'id'>): Promise<Version> {
+    const newVersion: Version = {
+      ...versionData,
+      id: this.currentVersionId++
+    };
+    this.versions.set(newVersion.id, newVersion);
+    return newVersion;
+  }
+
+  async updateVersion(id: number, versionData: Partial<Version>): Promise<Version> {
+    const existingVersion = this.versions.get(id);
+    if (!existingVersion) throw new Error('Version not found');
+    
+    const updatedVersion = { ...existingVersion, ...versionData };
+    this.versions.set(id, updatedVersion);
+    return updatedVersion;
+  }
+
+  async deleteVersion(id: number): Promise<void> {
+    if (!this.versions.has(id)) throw new Error('Version not found');
+    this.versions.delete(id);
+  }
+
+  async deleteScreenshot(id: number): Promise<void> {
+    if (!this.screenshots.has(id)) throw new Error('Screenshot not found');
+    this.screenshots.delete(id);
+  }
 }
 
 export class DatabaseStorage implements IStorage {
@@ -282,6 +311,42 @@ export class DatabaseStorage implements IStorage {
       })
       .returning();
     return newScreenshot;
+  }
+
+  // Admin methods for versions
+  async createVersion(versionData: Omit<Version, 'id'>): Promise<Version> {
+    const [newVersion] = await db
+      .insert(versions)
+      .values(versionData)
+      .returning();
+    return newVersion;
+  }
+
+  async updateVersion(id: number, versionData: Partial<Version>): Promise<Version> {
+    const [updatedVersion] = await db
+      .update(versions)
+      .set(versionData)
+      .where(eq(versions.id, id))
+      .returning();
+    
+    if (!updatedVersion) throw new Error('Version not found');
+    return updatedVersion;
+  }
+
+  async deleteVersion(id: number): Promise<void> {
+    const result = await db
+      .delete(versions)
+      .where(eq(versions.id, id));
+    
+    if (result.rowCount === 0) throw new Error('Version not found');
+  }
+
+  async deleteScreenshot(id: number): Promise<void> {
+    const result = await db
+      .delete(screenshots)
+      .where(eq(screenshots.id, id));
+    
+    if (result.rowCount === 0) throw new Error('Screenshot not found');
   }
 }
 

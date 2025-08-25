@@ -51,13 +51,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all versions
+  // Get all versions (includes admin route)
   app.get("/api/versions", async (req, res) => {
     try {
       const versions = await storage.getVersions();
       res.json(versions);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch versions" });
+    }
+  });
+
+  // Admin API Routes
+  app.post("/api/versions", async (req, res) => {
+    try {
+      const version = await storage.createVersion(req.body);
+      res.json(version);
+    } catch (error) {
+      console.error("Error creating version:", error);
+      res.status(500).json({ error: "Failed to create version" });
+    }
+  });
+
+  app.put("/api/versions/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const version = await storage.updateVersion(id, req.body);
+      res.json(version);
+    } catch (error) {
+      console.error("Error updating version:", error);
+      res.status(500).json({ error: "Failed to update version" });
+    }
+  });
+
+  app.delete("/api/versions/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteVersion(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting version:", error);
+      res.status(500).json({ error: "Failed to delete version" });
+    }
+  });
+
+  app.delete("/api/screenshots/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteScreenshot(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting screenshot:", error);
+      res.status(500).json({ error: "Failed to delete screenshot" });
     }
   });
 

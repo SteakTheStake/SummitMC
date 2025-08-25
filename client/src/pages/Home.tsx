@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, Download, Sparkles } from "lucide-react";
+import { ChevronRight, ChevronLeft, Download, Sparkles } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import MainLayout from "@/layouts/MainLayout";
 
@@ -26,6 +26,10 @@ const galleryImages = [
 export default function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   const { data: stats } = useQuery<{
     realTimeDownloads: number;
@@ -44,23 +48,83 @@ export default function Home() {
     queryKey: ["/api/versions/latest"],
   });
 
-  // Rotate images every 4 seconds
+  // Auto-rotate images every 4 seconds
   useEffect(() => {
+    if (!autoRotate) return;
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-        setIsTransitioning(false);
-      }, 300);
+      changeImage('next');
     }, 4000);
     return () => clearInterval(interval);
+  }, [autoRotate, currentImageIndex]);
+
+  const changeImage = (direction: 'next' | 'prev') => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      if (direction === 'next') {
+        setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+      } else {
+        setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+      }
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setAutoRotate(false);
+    setTouchEnd(0);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      changeImage('next');
+    } else if (isRightSwipe) {
+      changeImage('prev');
+    }
+    
+    // Resume auto-rotate after 10 seconds
+    setTimeout(() => setAutoRotate(true), 10000);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setAutoRotate(false);
+        changeImage('prev');
+        setTimeout(() => setAutoRotate(true), 10000);
+      } else if (e.key === 'ArrowRight') {
+        setAutoRotate(false);
+        changeImage('next');
+        setTimeout(() => setAutoRotate(true), 10000);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
   return (
     <MainLayout>
       <div className="min-h-screen">
       {/* Hero Section with Dynamic Gallery */}
-      <section className="relative h-screen overflow-hidden">
+      <section 
+        ref={heroRef}
+        className="relative h-screen overflow-hidden select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Background Gallery */}
         <div className="absolute inset-0">
           <div className={`absolute inset-0 transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
@@ -68,9 +132,38 @@ export default function Home() {
               src={galleryImages[currentImageIndex].src}
               alt={galleryImages[currentImageIndex].alt}
               className="w-full h-full object-cover"
+              draggable={false}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+        </div>
+
+        {/* Desktop Navigation Buttons */}
+        <div className="hidden md:block">
+          <Button
+            onClick={() => {
+              setAutoRotate(false);
+              changeImage('prev');
+              setTimeout(() => setAutoRotate(true), 10000);
+            }}
+            variant="ghost"
+            size="icon"
+            className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-black/20 hover:bg-black/40 text-white border border-white/20"
+          >
+            <ChevronLeft size={24} />
+          </Button>
+          <Button
+            onClick={() => {
+              setAutoRotate(false);
+              changeImage('next');
+              setTimeout(() => setAutoRotate(true), 10000);
+            }}
+            variant="ghost"
+            size="icon"
+            className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-black/20 hover:bg-black/40 text-white border border-white/20"
+          >
+            <ChevronRight size={24} />
+          </Button>
         </div>
 
         {/* Content Overlay */}
@@ -122,15 +215,25 @@ export default function Home() {
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
             <div className="flex gap-2">
               {galleryImages.map((_, index) => (
-                <div
+                <button
                   key={index}
-                  className={`h-1 transition-all duration-300 ${
+                  onClick={() => {
+                    setAutoRotate(false);
+                    setCurrentImageIndex(index);
+                    setTimeout(() => setAutoRotate(true), 10000);
+                  }}
+                  className={`h-2 transition-all duration-300 hover:scale-110 ${
                     index === currentImageIndex 
                       ? 'w-8 bg-gradient-to-r from-pink-400 to-blue-400' 
-                      : 'w-2 bg-white/30'
+                      : 'w-2 bg-white/30 hover:bg-white/50'
                   }`}
                 />
               ))}
+            </div>
+            
+            {/* Mobile swipe hint */}
+            <div className="md:hidden text-center mt-4">
+              <p className="text-white/60 text-sm">← Swipe to navigate →</p>
             </div>
           </div>
         </div>
