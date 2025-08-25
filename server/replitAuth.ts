@@ -8,9 +8,9 @@ import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 
-if (!process.env.REPLIT_DOMAINS) {
-  throw new Error("Environment variable REPLIT_DOMAINS not provided");
-}
+// Use actual Replit domain
+const replitDomains = process.env.REPLIT_DOMAINS || "4262fcef-1f5a-4c5b-b279-f35b5228c451-00-2hugotmsu871x.kirk.replit.dev";
+console.log("REPLIT_DOMAINS:", replitDomains);
 
 const getOidcConfig = memoize(
   async () => {
@@ -31,14 +31,17 @@ export function getSession() {
     ttl: sessionTtl,
     tableName: "sessions",
   });
+  
+  const sessionSecret = process.env.SESSION_SECRET || "dev-secret-key-change-in-production";
+  
   return session({
-    secret: process.env.SESSION_SECRET!,
+    secret: sessionSecret,
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       maxAge: sessionTtl,
     },
   });
@@ -57,22 +60,27 @@ function updateUserSession(
 async function upsertUser(
   claims: any,
 ) {
-  await storage.upsertUserByExternalId({
+  console.log("Upserting user with claims:", claims);
+  const result = await storage.upsertUserByExternalId({
     externalId: claims["sub"],
     email: claims["email"],
     firstName: claims["first_name"],
     lastName: claims["last_name"],
     profileImageUrl: claims["profile_image_url"],
   });
+  console.log("Upserted user:", result);
+  return result;
 }
 
 export async function setupAuth(app: Express) {
-  app.set("trust proxy", 1);
-  app.use(getSession());
-  app.use(passport.initialize());
-  app.use(passport.session());
+  try {
+    app.set("trust proxy", 1);
+    app.use(getSession());
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-  const config = await getOidcConfig();
+    const config = await getOidcConfig();
+    console.log("OIDC config loaded successfully");
 
   const verify: VerifyFunction = async (
     tokens: client.TokenEndpointResponse & client.TokenEndpointResponseHelpers,
@@ -84,8 +92,8 @@ export async function setupAuth(app: Express) {
     verified(null, user);
   };
 
-  for (const domain of process.env
-    .REPLIT_DOMAINS!.split(",")) {
+  for (const domain of replitDomains.split(",")) {
+    console.log("Registering strategy for domain:", domain);
     const strategy = new Strategy(
       {
         name: `replitauth:${domain}`,
@@ -96,22 +104,33 @@ export async function setupAuth(app: Express) {
       verify,
     );
     passport.use(strategy);
+    console.log("Strategy registered:", `replitauth:${domain}`);
   }
 
   passport.serializeUser((user: Express.User, cb) => cb(null, user));
   passport.deserializeUser((user: Express.User, cb) => cb(null, user));
 
   app.get("/api/login", (req, res, next) => {
-    passport.authenticate(`replitauth:${req.hostname}`, {
+    console.log("Login attempt for hostname:", req.hostname);
+    const domain = replitDomains.split(",")[0]; // Use first registered domain
+    console.log("Available strategies:", Object.keys(passport._strategies || {}));
+    console.log("Using strategy:", `replitauth:${domain}`);
+    
+    passport.authenticate(`replitauth:${domain}`, {
       prompt: "login consent",
       scope: ["openid", "email", "profile", "offline_access"],
     })(req, res, next);
   });
 
   app.get("/api/callback", (req, res, next) => {
-    passport.authenticate(`replitauth:${req.hostname}`, {
+    console.log("Callback for hostname:", req.hostname);
+    const domain = replitDomains.split(",")[0]; // Use first registered domain
+    console.log("Using strategy:", `replitauth:${domain}`);
+    
+    passport.authenticate(`replitauth:${domain}`, {
       successReturnToOrRedirect: "/dash",
       failureRedirect: "/api/login",
+      failureFlash: false
     })(req, res, next);
   });
 
@@ -125,6 +144,10 @@ export async function setupAuth(app: Express) {
       );
     });
   });
+  } catch (error) {
+    console.error("Error setting up auth:", error);
+    throw error;
+  }
 }
 
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
@@ -159,15 +182,21 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
 export const isAdmin: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
   
-  if (!req.isAuthenticated() || !user.claims?.sub) {
+  if (!req.isAuthenticated() || !user?.claims?.sub) {
+    console.log("Admin check failed: not authenticated or no user claims");
     return res.status(401).json({ message: "Unauthorized" });
   }
 
   try {
+    console.log("Checking admin status for user:", user.claims.sub);
     const dbUser = await storage.getUserByExternalId(user.claims.sub);
+    console.log("Database user found:", dbUser);
+    
     if (!dbUser || !dbUser.isAdmin) {
+      console.log("Admin access denied: user not admin");
       return res.status(403).json({ message: "Admin access required" });
     }
+    console.log("Admin access granted");
     next();
   } catch (error) {
     console.error("Error checking admin status:", error);

@@ -295,7 +295,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getUserByExternalId(externalId: string): Promise<User | undefined> {
+    console.log("Looking for user with external ID:", externalId);
     const [user] = await db.select().from(users).where(eq(users.username, externalId));
+    console.log("Found user:", user);
     return user || undefined;
   }
 
