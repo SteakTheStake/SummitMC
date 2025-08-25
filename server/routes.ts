@@ -4,8 +4,23 @@ import { storage } from "./storage";
 import { insertScreenshotSchema } from "@shared/schema";
 import { z } from "zod";
 import { modrinthService } from "./modrinth";
+import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Auth middleware
+  await setupAuth(app);
+
+  // Auth routes
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const externalId = req.user.claims.sub;
+      const user = await storage.getUserByExternalId(externalId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
   // Get download statistics (with real-time Modrinth data)
   app.get("/api/downloads/stats", async (req, res) => {
     try {
@@ -61,8 +76,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin API Routes
-  app.post("/api/versions", async (req, res) => {
+  // Admin API Routes (protected)
+  app.post("/api/versions", isAdmin, async (req, res) => {
     try {
       const version = await storage.createVersion(req.body);
       res.json(version);
@@ -72,7 +87,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/versions/:id", async (req, res) => {
+  app.put("/api/versions/:id", isAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const version = await storage.updateVersion(id, req.body);
@@ -83,7 +98,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/versions/:id", async (req, res) => {
+  app.delete("/api/versions/:id", isAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       await storage.deleteVersion(id);
@@ -94,7 +109,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/screenshots/:id", async (req, res) => {
+  app.delete("/api/screenshots/:id", isAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       await storage.deleteScreenshot(id);

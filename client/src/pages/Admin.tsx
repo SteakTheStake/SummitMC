@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,9 +8,11 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Trash2, Edit, Plus, Save, Eye, Settings, BarChart3, Users, Download, Image } from "lucide-react";
+import { Trash2, Edit, Plus, Save, Eye, Settings, BarChart3, Users, Download, Image, LogOut } from "lucide-react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { isUnauthorizedError } from "@/lib/authUtils";
 import MainLayout from "@/layouts/MainLayout";
 
 interface Version {
@@ -40,6 +42,53 @@ export default function Admin() {
   const [editingVersion, setEditingVersion] = useState<Version | null>(null);
   const [editingScreenshot, setEditingScreenshot] = useState<Screenshot | null>(null);
   const { toast } = useToast();
+  const { isAuthenticated, isAdmin: userIsAdmin, isLoading } = useAuth();
+
+  // Redirect to login if not authenticated or not admin
+  useEffect(() => {
+    if (!isLoading && (!isAuthenticated || !userIsAdmin)) {
+      toast({
+        title: "Access Denied",
+        description: "Admin access required. Redirecting to login...",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/api/login";
+      }, 1000);
+      return;
+    }
+  }, [isAuthenticated, userIsAdmin, isLoading, toast]);
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <MainLayout>
+        <div className="min-h-screen pt-20 px-6 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-400 mx-auto mb-4"></div>
+            <p className="text-slate-400">Checking admin access...</p>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
+
+  // Don't render admin content if not authenticated/admin
+  if (!isAuthenticated || !userIsAdmin) {
+    return (
+      <MainLayout>
+        <div className="min-h-screen pt-20 px-6 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-red-400 mb-4">Access Denied</h1>
+            <p className="text-slate-400 mb-4">Admin privileges required to access this page.</p>
+            <Button onClick={() => window.location.href = "/api/login"}>
+              Login as Admin
+            </Button>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
 
   // Fetch data
   const { data: versions } = useQuery<Version[]>({
@@ -70,6 +119,24 @@ export default function Admin() {
       queryClient.invalidateQueries({ queryKey: ["/api/versions"] });
       toast({ title: "Version created successfully" });
       setEditingVersion(null);
+    },
+    onError: (error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
+      toast({ 
+        title: "Error", 
+        description: "Failed to create version",
+        variant: "destructive" 
+      });
     },
   });
 
@@ -159,10 +226,22 @@ export default function Admin() {
       <div className="min-h-screen pt-20 px-6">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-8">
-            <h1 className="font-pixelbasel text-4xl mb-2">
-              <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Admin Dashboard</span>
-            </h1>
-            <p className="text-slate-400">Manage Summit texture pack content</p>
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="font-pixelbasel text-4xl mb-2">
+                  <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Admin Dashboard</span>
+                </h1>
+                <p className="text-slate-400">Manage Summit texture pack content</p>
+              </div>
+              <Button 
+                variant="outline" 
+                onClick={() => window.location.href = "/api/logout"}
+                className="flex items-center gap-2"
+              >
+                <LogOut size={16} />
+                Logout
+              </Button>
+            </div>
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">

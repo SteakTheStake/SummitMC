@@ -110,12 +110,19 @@ The application is designed to be deployed on platforms like Replit, with automa
   - Real-time statistics display with Modrinth API integration
   - Full CRUD operations for versions and screenshots
   - Quick actions and activity tracking
-  - Semi-hidden URL for secure access
+  - Secured with Replit Auth requiring admin privileges
+- **Authentication System**: Implemented Replit Auth for admin access
+  - OpenID Connect integration with Replit identity provider
+  - Session management with PostgreSQL storage
+  - Admin role-based access control
+  - Automatic redirect to login for unauthorized access
+  - Secure logout with proper session cleanup
 - **Database Integration**: Migrated from in-memory storage to PostgreSQL database
   - Added `server/db.ts` with Neon database configuration
   - Implemented `DatabaseStorage` class replacing `MemStorage`
   - Seeded database with initial texture pack data
   - All API endpoints now use persistent database storage
+  - User table for authentication with admin flags
 - **Font Customization**: Integrated custom Pixelbasel font
   - Added user-uploaded TTF font file to `/public/fonts/`
   - Updated all headings and branding to use custom font
