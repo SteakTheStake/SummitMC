@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Lock, User } from "lucide-react";
 
 export default function Login() {
@@ -24,6 +24,9 @@ export default function Login() {
       const result = await response.json();
 
       if (result.success) {
+        // Invalidate auth query to refresh authentication state
+        await queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
+        
         toast({
           title: "Login successful",
           description: "Welcome to the admin dashboard!",
