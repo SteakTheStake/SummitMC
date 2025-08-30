@@ -10,15 +10,19 @@ interface User {
 }
 
 export function useAuth() {
-  const { data: user, isLoading } = useQuery<User>({
+  const { data: user, isLoading, error } = useQuery<User>({
     queryKey: ["/api/auth/user"],
     retry: false,
+    staleTime: 0, // Always check authentication status
   });
 
+  // If there's an error (like 401), user is not authenticated
+  const isAuthenticated = !!user && !error;
+  
   return {
     user,
     isLoading,
-    isAuthenticated: !!user,
+    isAuthenticated,
     isAdmin: user?.isAdmin || false,
   };
 }

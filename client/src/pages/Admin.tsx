@@ -42,7 +42,10 @@ export default function Admin() {
   const [editingVersion, setEditingVersion] = useState<Version | null>(null);
   const [editingScreenshot, setEditingScreenshot] = useState<Screenshot | null>(null);
   const { toast } = useToast();
-  const { isAuthenticated, isAdmin: userIsAdmin, isLoading } = useAuth();
+  const { isAuthenticated, isAdmin: userIsAdmin, isLoading, user } = useAuth();
+  
+  // Debug logging
+  console.log("Admin component render:", { isAuthenticated, userIsAdmin, isLoading, user });
 
   // Redirect to login if not authenticated or not admin
   useEffect(() => {
