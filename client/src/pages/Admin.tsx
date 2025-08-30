@@ -110,10 +110,7 @@ export default function Admin() {
   // Mutations
   const createVersionMutation = useMutation({
     mutationFn: async (data: Omit<Version, 'id'>) => {
-      return apiRequest('/api/versions', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
+      return apiRequest('POST', '/api/versions', data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/versions"] });
@@ -142,10 +139,7 @@ export default function Admin() {
 
   const updateVersionMutation = useMutation({
     mutationFn: async (data: Version) => {
-      return apiRequest(`/api/versions/${data.id}`, {
-        method: 'PUT',
-        body: JSON.stringify(data),
-      });
+      return apiRequest('PUT', `/api/versions/${data.id}`, data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/versions"] });
@@ -156,9 +150,7 @@ export default function Admin() {
 
   const deleteVersionMutation = useMutation({
     mutationFn: async (id: number) => {
-      return apiRequest(`/api/versions/${id}`, {
-        method: 'DELETE',
-      });
+      return apiRequest('DELETE', `/api/versions/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/versions"] });
@@ -168,10 +160,7 @@ export default function Admin() {
 
   const createScreenshotMutation = useMutation({
     mutationFn: async (data: Omit<Screenshot, 'id'>) => {
-      return apiRequest('/api/screenshots', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
+      return apiRequest('POST', '/api/screenshots', data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/screenshots"] });
@@ -182,9 +171,7 @@ export default function Admin() {
 
   const deleteScreenshotMutation = useMutation({
     mutationFn: async (id: number) => {
-      return apiRequest(`/api/screenshots/${id}`, {
-        method: 'DELETE',
-      });
+      return apiRequest('DELETE', `/api/screenshots/${id}`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/screenshots"] });
@@ -321,7 +308,7 @@ export default function Admin() {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold text-pink-400">
-                      {modrinthStats?.project?.followers || "N/A"}
+                      {(modrinthStats as any)?.project?.followers || "N/A"}
                     </div>
                   </CardContent>
                 </Card>
@@ -607,19 +594,19 @@ export default function Admin() {
                     <CardTitle>Modrinth Stats</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    {modrinthStats?.project && (
+                    {(modrinthStats as any)?.project && (
                       <div className="space-y-3">
                         <div className="flex justify-between">
                           <span>Downloads</span>
-                          <span className="text-green-400">{modrinthStats.project.downloads}</span>
+                          <span className="text-green-400">{(modrinthStats as any).project.downloads}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Followers</span>
-                          <span className="text-blue-400">{modrinthStats.project.followers}</span>
+                          <span className="text-blue-400">{(modrinthStats as any).project.followers}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Versions</span>
-                          <span className="text-purple-400">{modrinthStats.project.versions}</span>
+                          <span className="text-purple-400">{(modrinthStats as any).project.versions}</span>
                         </div>
                       </div>
                     )}
