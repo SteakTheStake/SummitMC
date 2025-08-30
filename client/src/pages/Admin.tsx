@@ -53,7 +53,7 @@ export default function Admin() {
         variant: "destructive",
       });
       setTimeout(() => {
-        window.location.href = "/api/login";
+        window.location.href = "/login";
       }, 1000);
       return;
     }
@@ -81,7 +81,7 @@ export default function Admin() {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-red-400 mb-4">Access Denied</h1>
             <p className="text-slate-400 mb-4">Admin privileges required to access this page.</p>
-            <Button onClick={() => window.location.href = "/api/login"}>
+            <Button onClick={() => window.location.href = "/login"}>
               Login as Admin
             </Button>
           </div>
@@ -128,7 +128,7 @@ export default function Admin() {
           variant: "destructive",
         });
         setTimeout(() => {
-          window.location.href = "/api/login";
+          window.location.href = "/login";
         }, 500);
         return;
       }
@@ -235,7 +235,18 @@ export default function Admin() {
               </div>
               <Button 
                 variant="outline" 
-                onClick={() => window.location.href = "/api/logout"}
+                onClick={async () => {
+                  try {
+                    await apiRequest("POST", "/api/logout");
+                    window.location.href = "/login";
+                  } catch (error) {
+                    toast({
+                      title: "Logout failed",
+                      description: "Please try again",
+                      variant: "destructive"
+                    });
+                  }
+                }}
                 className="flex items-center gap-2"
               >
                 <LogOut size={16} />

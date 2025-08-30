@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { insertScreenshotSchema } from "@shared/schema";
 import { z } from "zod";
 import { modrinthService } from "./modrinth";
-import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
+import { setupAuth, isAuthenticated, isAdmin } from "./localAuth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -13,9 +13,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth routes
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
-      const externalId = req.user.claims.sub;
-      const user = await storage.getUserByExternalId(externalId);
-      res.json(user);
+      const user = req.user;
+      res.json({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        isAdmin: user.isAdmin
+      });
     } catch (error) {
       console.error("Error fetching user:", error);
       res.status(500).json({ message: "Failed to fetch user" });

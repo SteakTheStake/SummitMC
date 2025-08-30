@@ -40,11 +40,11 @@ export default function Navigation({ isScrolled }: NavigationProps) {
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
-                <a className={`hover:text-pink-400 transition-colors duration-200 ${
+                <span className={`hover:text-pink-400 transition-colors duration-200 cursor-pointer ${
                   location === item.href ? 'text-pink-400' : ''
                 }`}>
                   {item.label}
-                </a>
+                </span>
               </Link>
             ))}
           </div>
@@ -60,14 +60,14 @@ export default function Navigation({ isScrolled }: NavigationProps) {
               <div className="flex flex-col space-y-4 mt-8">
                 {navItems.map((item) => (
                   <Link key={item.href} href={item.href}>
-                    <a
+                    <span
                       onClick={() => setIsOpen(false)}
-                      className={`text-left text-lg hover:text-pink-400 transition-colors duration-200 block ${
+                      className={`text-left text-lg hover:text-pink-400 transition-colors duration-200 block cursor-pointer ${
                         location === item.href ? 'text-pink-400' : ''
                       }`}
                     >
                       {item.label}
-                    </a>
+                    </span>
                   </Link>
                 ))}
               </div>

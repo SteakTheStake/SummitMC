@@ -10,6 +10,7 @@ import Gallery from "@/pages/Gallery";
 import Download from "@/pages/Download";
 import About from "@/pages/About";
 import Admin from "@/pages/Admin";
+import Login from "@/pages/Login";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/gallery" component={Gallery} />
       <Route path="/download" component={Download} />
       <Route path="/about" component={About} />
+      <Route path="/login" component={Login} />
       <Route path="/dash" component={Admin} />
       <Route component={NotFound} />
     </Switch>
