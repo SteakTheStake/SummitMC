@@ -60,7 +60,7 @@ export default function Admin() {
       }, 1000);
       return;
     }
-  }, [isAuthenticated, userIsAdmin, isLoading, toast]);
+  }, [isAuthenticated, userIsAdmin, isLoading]);
 
   // Show loading state
   if (isLoading) {
