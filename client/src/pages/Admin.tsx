@@ -45,7 +45,29 @@ export default function Admin() {
   const { isAuthenticated, isAdmin: userIsAdmin, isLoading, user } = useAuth();
   
   // Debug logging
-  console.log("Admin component render:", { isAuthenticated, userIsAdmin, isLoading, user });
+  console.log("Admin component render:", { isAuthenticated, userIsAdmin, isLoading });
+
+  // ALL HOOKS MUST BE CALLED AT THE TOP LEVEL - NO EARLY RETURNS BEFORE THIS
+  // Fetch data
+  const { data: versions } = useQuery<Version[]>({
+    queryKey: ["/api/versions"],
+    enabled: isAuthenticated && userIsAdmin, // Only fetch when authenticated
+  });
+
+  const { data: screenshots } = useQuery<Screenshot[]>({
+    queryKey: ["/api/screenshots"],
+    enabled: isAuthenticated && userIsAdmin, // Only fetch when authenticated
+  });
+
+  const { data: downloadStats } = useQuery<{ stats: DownloadStat[]; totalDownloads: number }>({
+    queryKey: ["/api/downloads/stats"],
+    enabled: isAuthenticated && userIsAdmin, // Only fetch when authenticated
+  });
+
+  const { data: modrinthStats } = useQuery({
+    queryKey: ["/api/modrinth/stats"],
+    enabled: isAuthenticated && userIsAdmin, // Only fetch when authenticated
+  });
 
   // Redirect to login if not authenticated or not admin
   useEffect(() => {
@@ -61,54 +83,6 @@ export default function Admin() {
       return;
     }
   }, [isAuthenticated, userIsAdmin, isLoading]);
-
-  // Show loading state
-  if (isLoading) {
-    return (
-      <MainLayout>
-        <div className="min-h-screen pt-20 px-6 flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-400 mx-auto mb-4"></div>
-            <p className="text-slate-400">Checking admin access...</p>
-          </div>
-        </div>
-      </MainLayout>
-    );
-  }
-
-  // Don't render admin content if not authenticated/admin
-  if (!isAuthenticated || !userIsAdmin) {
-    return (
-      <MainLayout>
-        <div className="min-h-screen pt-20 px-6 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-red-400 mb-4">Access Denied</h1>
-            <p className="text-slate-400 mb-4">Admin privileges required to access this page.</p>
-            <Button onClick={() => window.location.href = "/login"}>
-              Login as Admin
-            </Button>
-          </div>
-        </div>
-      </MainLayout>
-    );
-  }
-
-  // Fetch data
-  const { data: versions } = useQuery<Version[]>({
-    queryKey: ["/api/versions"],
-  });
-
-  const { data: screenshots } = useQuery<Screenshot[]>({
-    queryKey: ["/api/screenshots"],
-  });
-
-  const { data: downloadStats } = useQuery<{ stats: DownloadStat[]; totalDownloads: number }>({
-    queryKey: ["/api/downloads/stats"],
-  });
-
-  const { data: modrinthStats } = useQuery({
-    queryKey: ["/api/modrinth/stats"],
-  });
 
   // Mutations
   const createVersionMutation = useMutation({
@@ -210,6 +184,37 @@ export default function Admin() {
 
     createScreenshotMutation.mutate(data);
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <MainLayout>
+        <div className="min-h-screen pt-20 px-6 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-400 mx-auto mb-4"></div>
+            <p className="text-slate-400">Checking admin access...</p>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
+
+  // Don't render admin content if not authenticated/admin
+  if (!isAuthenticated || !userIsAdmin) {
+    return (
+      <MainLayout>
+        <div className="min-h-screen pt-20 px-6 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-red-400 mb-4">Access Denied</h1>
+            <p className="text-slate-400 mb-4">Admin privileges required to access this page.</p>
+            <Button onClick={() => window.location.href = "/login"}>
+              Login as Admin
+            </Button>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>
@@ -580,7 +585,7 @@ export default function Admin() {
                   <CardContent>
                     <div className="space-y-3">
                       {downloadStats?.stats.map((stat) => (
-                        <div key={`${stat.resolution}-${stat.platform}`} className="flex justify-between items-center">
+                        <div key={stat.id} className="flex justify-between items-center">
                           <div>
                             <span className="font-medium">{stat.resolution}</span>
                             <span className="text-slate-400 ml-2">({stat.platform})</span>
