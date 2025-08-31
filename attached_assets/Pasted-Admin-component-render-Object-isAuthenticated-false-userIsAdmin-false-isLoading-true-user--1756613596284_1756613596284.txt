@@ -1,0 +1,57 @@
+Admin component render: 
+Object { isAuthenticated: false, userIsAdmin: false, isLoading: true, user: undefined }
+index-zxVgwbKJ.js:327:72427
+Admin component render: 
+Object { isAuthenticated: true, userIsAdmin: true, isLoading: false, user: {…} }
+index-zxVgwbKJ.js:327:72427
+Admin component render: 
+Object { isAuthenticated: true, userIsAdmin: true, isLoading: false, user: {…} }
+index-zxVgwbKJ.js:327:72427
+Error: Minified React error #310; visit https://reactjs.org/docs/error-decoder.html?invariant=310 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    Nt https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    Il https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    nd https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    useEffect https://summitmc.xyz/assets/index-zxVgwbKJ.js:9
+    z2 https://summitmc.xyz/assets/index-zxVgwbKJ.js:48
+    H2 https://summitmc.xyz/assets/index-zxVgwbKJ.js:48
+    wt https://summitmc.xyz/assets/index-zxVgwbKJ.js:48
+    vk https://summitmc.xyz/assets/index-zxVgwbKJ.js:327
+    ed https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    Pc https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    Nv https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    wv https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    Nw https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    gl https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    $c https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    rp https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    sr https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    et https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+<anonymous code>:1:145535
+Uncaught Error: Minified React error #310; visit https://reactjs.org/docs/error-decoder.html?invariant=310 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    Nt https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    Il https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    nd https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    useEffect https://summitmc.xyz/assets/index-zxVgwbKJ.js:9
+    z2 https://summitmc.xyz/assets/index-zxVgwbKJ.js:48
+    H2 https://summitmc.xyz/assets/index-zxVgwbKJ.js:48
+    wt https://summitmc.xyz/assets/index-zxVgwbKJ.js:48
+    vk https://summitmc.xyz/assets/index-zxVgwbKJ.js:327
+    ed https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    Pc https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    Nv https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    wv https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    Nw https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    gl https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    $c https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    rp https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+    sr https://summitmc.xyz/assets/index-zxVgwbKJ.js:38
+    et https://summitmc.xyz/assets/index-zxVgwbKJ.js:40
+index-zxVgwbKJ.js:38:17592
+Source map error: Error: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+Stack in the worker:parseSourceMapInput@resource://devtools/client/shared/vendor/source-map/lib/util.js:163:15
+_factory@resource://devtools/client/shared/vendor/source-map/lib/source-map-consumer.js:1066:22
+SourceMapConsumer@resource://devtools/client/shared/vendor/source-map/lib/source-map-consumer.js:26:12
+_fetch@resource://devtools/client/shared/source-map-loader/utils/fetchSourceMap.js:83:19
+
+Resource URL: https://summitmc.xyz/%3Canonymous%20code%3E
+Source Map URL: installHook.js.map
