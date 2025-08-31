@@ -1,10 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import multer from "multer";
+import crypto from "crypto";
 import { storage } from "./storage";
 import { insertScreenshotSchema } from "@shared/schema";
 import { z } from "zod";
 import { modrinthService } from "./modrinth";
 import { setupAuth, isAuthenticated, isAdmin } from "./localAuth";
+import { ObjectStorageService } from "./objectStorage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -158,11 +161,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get screenshots
+  // Get screenshots with enhanced filtering and search
   app.get("/api/screenshots", async (req, res) => {
     try {
       const category = req.query.category as string | undefined;
-      const screenshots = await storage.getScreenshots(category);
+      const search = req.query.search as string | undefined;
+      const screenshots = await storage.getScreenshots(category, search);
       res.json(screenshots);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch screenshots" });
@@ -188,18 +192,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Add screenshot
-  app.post("/api/screenshots", async (req, res) => {
+  // Add screenshot with enhanced validation and duplicate detection
+  app.post("/api/screenshots", isAdmin, async (req, res) => {
     try {
       const validatedData = insertScreenshotSchema.parse(req.body);
+      
+      // Check for duplicates
+      const duplicates = await storage.findDuplicateScreenshots(validatedData.imageUrl, validatedData.fileHash);
+      if (duplicates.length > 0) {
+        return res.status(409).json({ 
+          message: "Duplicate image found",
+          duplicates: duplicates
+        });
+      }
+      
       const screenshot = await storage.addScreenshot(validatedData);
       res.status(201).json(screenshot);
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ message: "Invalid screenshot data", errors: error.errors });
       } else {
+        console.error("Error adding screenshot:", error);
         res.status(500).json({ message: "Failed to add screenshot" });
       }
+    }
+  });
+
+  // Update screenshot (edit-in-place)
+  app.put("/api/screenshots/:id", isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      const screenshot = await storage.updateScreenshot(id, updates);
+      res.json(screenshot);
+    } catch (error) {
+      console.error("Error updating screenshot:", error);
+      res.status(500).json({ error: "Failed to update screenshot" });
+    }
+  });
+
+  // Get upload URL for screenshot files
+  app.post("/api/screenshots/upload", isAdmin, async (req, res) => {
+    try {
+      const objectStorageService = new ObjectStorageService();
+      const uploadURL = await objectStorageService.getObjectEntityUploadURL();
+      res.json({ uploadURL });
+    } catch (error) {
+      console.error("Error getting upload URL:", error);
+      res.status(500).json({ error: "Failed to get upload URL" });
+    }
+  });
+
+  // Check for duplicate screenshots
+  app.post("/api/screenshots/check-duplicates", isAdmin, async (req, res) => {
+    try {
+      const { imageUrl, fileHash } = req.body;
+      const duplicates = await storage.findDuplicateScreenshots(imageUrl, fileHash);
+      res.json({ duplicates });
+    } catch (error) {
+      console.error("Error checking duplicates:", error);
+      res.status(500).json({ error: "Failed to check for duplicates" });
+    }
+  });
+
+  // Get screenshot categories
+  app.get("/api/screenshots/categories", async (req, res) => {
+    try {
+      const categories = await storage.getScreenshotCategories();
+      res.json(categories);
+    } catch (error) {
+      console.error("Error getting categories:", error);
+      res.status(500).json({ error: "Failed to get categories" });
+    }
+  });
+
+  // Serve private objects (screenshot files)
+  app.get("/objects/:objectPath(*)", isAuthenticated, async (req, res) => {
+    const objectStorageService = new ObjectStorageService();
+    try {
+      const objectFile = await objectStorageService.getObjectEntityFile(req.path);
+      objectStorageService.downloadObject(objectFile, res);
+    } catch (error) {
+      console.error("Error serving object:", error);
+      res.status(404).json({ error: "File not found" });
     }
   });
 

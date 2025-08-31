@@ -53,6 +53,11 @@ export const screenshots = pgTable("screenshots", {
   description: text("description"),
   category: text("category").notNull(),
   resolution: text("resolution").notNull(),
+  featured: boolean("featured").default(false),
+  fileHash: text("file_hash"), // For duplicate detection
+  fileName: text("file_name"), // Original filename
+  fileSize: integer("file_size"), // File size in bytes
+  mimeType: text("mime_type"), // File MIME type
   uploadedAt: timestamp("uploaded_at").defaultNow(),
 });
 

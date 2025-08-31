@@ -12,9 +12,16 @@ export interface IStorage {
   
   getVersions(): Promise<Version[]>;
   getLatestVersion(): Promise<Version | undefined>;
+  createVersion(version: InsertVersion): Promise<Version>;
+  updateVersion(id: number, updates: Partial<Version>): Promise<Version>;
+  deleteVersion(id: number): Promise<void>;
   
-  getScreenshots(category?: string): Promise<Screenshot[]>;
+  getScreenshots(category?: string, search?: string): Promise<Screenshot[]>;
   addScreenshot(screenshot: InsertScreenshot): Promise<Screenshot>;
+  updateScreenshot(id: number, updates: Partial<Screenshot>): Promise<Screenshot>;
+  deleteScreenshot(id: number): Promise<void>;
+  findDuplicateScreenshots(imageUrl?: string, fileHash?: string): Promise<Screenshot[]>;
+  getScreenshotCategories(): Promise<string[]>;
 }
 
 export class MemStorage implements IStorage {
