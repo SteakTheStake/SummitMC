@@ -1,6 +1,6 @@
 import { users, downloads, versions, screenshots, type User, type InsertUser, type Download, type Version, type Screenshot, type InsertDownload, type InsertVersion, type InsertScreenshot } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, or } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -133,7 +133,12 @@ export class MemStorage implements IStorage {
       const screenshot: Screenshot = {
         id: this.currentScreenshotId++,
         ...screenshotData,
-        uploadedAt: new Date()
+        uploadedAt: new Date(),
+        featured: false,
+        fileHash: null,
+        fileName: null,
+        fileSize: null,
+        mimeType: null
       };
       this.screenshots.set(screenshot.id, screenshot);
     });
@@ -203,12 +208,27 @@ export class MemStorage implements IStorage {
     return Array.from(this.versions.values()).find(v => v.isLatest);
   }
 
-  async getScreenshots(category?: string): Promise<Screenshot[]> {
-    const allScreenshots = Array.from(this.screenshots.values());
+  async getScreenshots(category?: string, search?: string): Promise<Screenshot[]> {
+    let allScreenshots = Array.from(this.screenshots.values());
+    
     if (category) {
-      return allScreenshots.filter(s => s.category === category);
+      allScreenshots = allScreenshots.filter(s => s.category === category);
     }
-    return allScreenshots;
+    
+    if (search) {
+      const searchLower = search.toLowerCase();
+      allScreenshots = allScreenshots.filter(s => 
+        s.title.toLowerCase().includes(searchLower) ||
+        (s.description && s.description.toLowerCase().includes(searchLower))
+      );
+    }
+    
+    // Sort featured items first
+    return allScreenshots.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return new Date(b.uploadedAt || 0).getTime() - new Date(a.uploadedAt || 0).getTime();
+    });
   }
 
   async addScreenshot(screenshot: InsertScreenshot): Promise<Screenshot> {
@@ -216,10 +236,38 @@ export class MemStorage implements IStorage {
       id: this.currentScreenshotId++,
       ...screenshot,
       description: screenshot.description || null,
-      uploadedAt: new Date()
+      uploadedAt: new Date(),
+      featured: screenshot.featured ?? false,
+      fileHash: screenshot.fileHash ?? null,
+      fileName: screenshot.fileName ?? null,
+      fileSize: screenshot.fileSize ?? null,
+      mimeType: screenshot.mimeType ?? null
     };
     this.screenshots.set(newScreenshot.id, newScreenshot);
     return newScreenshot;
+  }
+
+  async updateScreenshot(id: number, updates: Partial<Screenshot>): Promise<Screenshot> {
+    const existing = this.screenshots.get(id);
+    if (!existing) throw new Error('Screenshot not found');
+    
+    const updated = { ...existing, ...updates };
+    this.screenshots.set(id, updated);
+    return updated;
+  }
+
+  async findDuplicateScreenshots(imageUrl?: string, fileHash?: string): Promise<Screenshot[]> {
+    const allScreenshots = Array.from(this.screenshots.values());
+    return allScreenshots.filter(s => 
+      (imageUrl && s.imageUrl === imageUrl) ||
+      (fileHash && s.fileHash === fileHash)
+    );
+  }
+
+  async getScreenshotCategories(): Promise<string[]> {
+    const allScreenshots = Array.from(this.screenshots.values());
+    const categories = new Set(allScreenshots.map(s => s.category));
+    return Array.from(categories).sort();
   }
 
   // Admin methods for versions
@@ -368,11 +416,27 @@ export class DatabaseStorage implements IStorage {
     return version || undefined;
   }
 
-  async getScreenshots(category?: string): Promise<Screenshot[]> {
+  async getScreenshots(category?: string, search?: string): Promise<Screenshot[]> {
+    let results: Screenshot[];
+    
     if (category) {
-      return await db.select().from(screenshots).where(eq(screenshots.category, category));
+      results = await db.select().from(screenshots)
+        .where(eq(screenshots.category, category))
+        .orderBy(desc(screenshots.featured), desc(screenshots.uploadedAt));
+    } else {
+      results = await db.select().from(screenshots)
+        .orderBy(desc(screenshots.featured), desc(screenshots.uploadedAt));
     }
-    return await db.select().from(screenshots);
+    
+    if (search) {
+      const searchLower = search.toLowerCase();
+      return results.filter(s => 
+        s.title.toLowerCase().includes(searchLower) ||
+        (s.description && s.description.toLowerCase().includes(searchLower))
+      );
+    }
+    
+    return results;
   }
 
   async addScreenshot(screenshot: InsertScreenshot): Promise<Screenshot> {
@@ -384,6 +448,36 @@ export class DatabaseStorage implements IStorage {
       })
       .returning();
     return newScreenshot;
+  }
+
+  async updateScreenshot(id: number, updates: Partial<Screenshot>): Promise<Screenshot> {
+    const [updated] = await db
+      .update(screenshots)
+      .set(updates)
+      .where(eq(screenshots.id, id))
+      .returning();
+    
+    if (!updated) throw new Error('Screenshot not found');
+    return updated;
+  }
+
+  async findDuplicateScreenshots(imageUrl?: string, fileHash?: string): Promise<Screenshot[]> {
+    if (imageUrl && fileHash) {
+      return await db.select().from(screenshots).where(
+        or(eq(screenshots.imageUrl, imageUrl), eq(screenshots.fileHash, fileHash))
+      );
+    } else if (imageUrl) {
+      return await db.select().from(screenshots).where(eq(screenshots.imageUrl, imageUrl));
+    } else if (fileHash) {
+      return await db.select().from(screenshots).where(eq(screenshots.fileHash, fileHash));
+    }
+    
+    return [];
+  }
+
+  async getScreenshotCategories(): Promise<string[]> {
+    const results = await db.selectDistinct({ category: screenshots.category }).from(screenshots);
+    return results.map(r => r.category).sort();
   }
 
   // Admin methods for versions
