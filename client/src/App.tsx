@@ -11,6 +11,12 @@ import Download from "@/pages/Download";
 import About from "@/pages/About";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
+import AdminLayout from "@/layouts/AdminLayout";
+import AdminOverview from "@/pages/admin/AdminOverview";
+import AdminVersions from "@/pages/admin/AdminVersions";
+import AdminGallery from "@/pages/admin/AdminGallery";
+import AdminAnalytics from "@/pages/admin/AdminAnalytics";
+import AdminSettings from "@/pages/admin/AdminSettings";
 
 function Router() {
   return (
@@ -21,7 +27,44 @@ function Router() {
       <Route path="/download" component={Download} />
       <Route path="/about" component={About} />
       <Route path="/login" component={Login} />
-      <Route path="/dash" component={Admin} />
+      
+      {/* Admin Routes */}
+      <Route path="/dash">
+        {() => (
+          <AdminLayout>
+            <AdminOverview />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/dash/versions">
+        {() => (
+          <AdminLayout>
+            <AdminVersions />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/dash/gallery">
+        {() => (
+          <AdminLayout>
+            <AdminGallery />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/dash/analytics">
+        {() => (
+          <AdminLayout>
+            <AdminAnalytics />
+          </AdminLayout>
+        )}
+      </Route>
+      <Route path="/dash/settings">
+        {() => (
+          <AdminLayout>
+            <AdminSettings />
+          </AdminLayout>
+        )}
+      </Route>
+      
       <Route component={NotFound} />
     </Switch>
   );
