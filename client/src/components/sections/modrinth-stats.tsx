@@ -23,8 +23,8 @@ interface ModrinthStatsData {
 export default function ModrinthStats() {
   const { data: modrinthData, isLoading, isError } = useQuery<ModrinthStatsData>({
     queryKey: ["/api/modrinth/stats"],
-    refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes
-    staleTime: 2 * 60 * 1000, // Consider data stale after 2 minutes
+    refetchInterval: 0.1 * 60 * 1000, // Refetch every 6 seconds
+    staleTime: 0.1 * 60 * 1000, // Consider data stale after 6 seconds
   });
 
   if (isLoading) {

@@ -5,10 +5,7 @@ export const texturePackData = {
   description: "Experience realistic textures that enhance your world without losing Minecraft's charm.",
   
   resolutions: [
-    { name: "16x", label: "Standard", description: "Recommended for most users", popular: true },
-    { name: "32x", label: "Enhanced", description: "Enhanced detail for better hardware" },
-    { name: "64x", label: "HD", description: "High definition for powerful systems" },
-    { name: "512x", label: "Ultra HD", description: "Ultra high-resolution with PBR/POM support", premium: true }
+    { name: "64x", label: "Standard", description: "Recommended for most users", popular: true }
   ],
   
   features: [
@@ -68,30 +65,61 @@ export const texturePackData = {
   ],
   
   compatibility: {
-    minecraftVersions: "1.19.x - 1.21.4",
+    minecraftVersions: "1.13.x - 1.21.x",
     mods: ["Continuity", "Optifine", "Fabric"],
     requirements: {
-      "16x": "2GB+ RAM",
-      "32x": "4GB+ RAM",
-      "64x": "4GB+ RAM",
-      "512x": "8GB+ RAM"
+      "32x": "8GB+ RAM" + " 2GB+ VRAM",
+      "64x": "8GB+ RAM" + " 2GB+ VRAM"
     }
   },
   
   downloadLinks: {
     modrinth: "https://modrinth.com/resourcepack/summit",
-    planetminecraft: "https://www.planetminecraft.com/texture-pack/summit-6177524/"
+    curseforge: "https://www.curseforge.com/minecraft/texture-packs/summitmcrp"
   },
   
   recentUpdates: [
     {
-      version: "v2.3",
-      date: "February 2025",
+      version: "v2.6",
+      date: "August 2025",
       changes: [
-        "Modified packed mud and mud brick",
-        "Enhanced oak log tops",
-        "Updated cherry leaves and pink petals",
-        "New chest CEM models"
+        "Added pistons and sticky pistons",
+        "Added sweet berry bush textures",
+        "Added sugar cane textures",
+        "Added flower pot textures",
+        "Added totem of undying",
+        "Added clay ball",
+        "Added cake item",
+        "Added nitwit villager",
+        "Added shepherd villager",
+        "Added campfire and soul campfire",
+        "Added acacia, oak, and iron trapdoors",
+        "Added dry grass and tall dry grass",
+        "Added all boats",
+        "Added poisonous potato",
+        "Added repeater",
+        "Added minecart",
+        "Added xp orb",
+        "Added pottery sherds and decorated pots",
+        "Added custom font",
+        "Added almost all UI textures (~541)",
+        "Modified cobblestone to look more cake-like",
+        "Modified raw chicken to be thinner",
+        "Modified blaze rod and breeze rod to be thinner",
+        "Fixed bamboo door normal map issue",
+        "Modified coal to a bigger size",
+        "Adjusted librarian villager glasses opacity",
+        "New textures for stripped logs, oak log, birch log, and acacia log",
+        "Manual touchups for grass",
+        "Updated raw iron, raw gold, and raw copper with new _s + _n maps",
+        "Improved lapis colors",
+        "Reduced noise in knowledge book",
+        "Made cake item more visible",
+        "Fixed bug with redstone torch",
+        "New texture for bamboo block + stripped",
+        "Reduced intensity of player head eyes",
+        "Added 3 json files",
+        "Added 2 animated textures"
       ]
     }
   ]

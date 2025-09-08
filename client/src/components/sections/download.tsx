@@ -9,43 +9,38 @@ import ModrinthStats from "./modrinth-stats";
 
 const resolutionOptions = [
   {
-    resolution: "16x",
-    label: "16x",
-    description: "Standard",
+    resolution: "64x",
+    label: "64x",
+    description: "Better Detail",
     popular: true,
     available: true,
-    platforms: ["modrinth", "planetminecraft"]
+    platforms: ["modrinth", "curseForge"]
   },
   {
     resolution: "32x",
     label: "32x",
-    description: "Enhanced",
+    description: "Better Preformance",
     popular: false,
     available: true,
-    platforms: ["modrinth", "planetminecraft"]
-  },
-  {
-    resolution: "64x",
-    label: "64x",
-    description: "High detail",
-    popular: false,
-    available: true,
-    platforms: ["modrinth", "planetminecraft"]
+    platforms: ["modrinth", "curseforge"]
   }
 ];
 
 const systemRequirements = [
-  { label: "Minecraft Version", value: "1.19.x - 1.21.4" },
-  { label: "RAM (16x)", value: "2GB+" },
-  { label: "RAM (64x)", value: "4GB+" },
-  { label: "RAM (512x)", value: "8GB+" },
-  { label: "Optifine/Fabric", value: "Recommended" }
+  { label: "Minecraft Version", value: "1.19.x or higher" },
+  { label: "EMF (Entity Model Features)", value: "Required" },
+  { label: "ETF (Entity Texture Features)", value: "Required" },
+  { label: "Continuity", value: "Required" },
+  { label: "Polytone", value: "Required" },
+  { label: "Fabric", value: "Recommended" },
+  { label: "LabPBR Compatible Shader", value: "Recommended" },
+  { label: "Optifine", value: "Alternative" }
 ];
 
 const quickInstallSteps = [
   { step: 1, title: "Download", description: "Choose your preferred resolution and platform" },
   { step: 2, title: "Install", description: "Place the file in your resource packs folder" },
-  { step: 3, title: "Activate", description: "Enable Summit in your Minecraft settings" }
+  { step: 3, title: "Activate", description: "Enable Summit in your Minecraft Resource Pack settings" }
 ];
 
 export default function Download() {
@@ -93,7 +88,7 @@ export default function Download() {
     if (platform === "modrinth") {
       return "https://modrinth.com/resourcepack/summit";
     }
-    return "https://www.planetminecraft.com/texture-pack/summit-6177524/";
+    return "https://www.curseforge.com/texture-pack/summit-6177524/";
   };
 
   return (
@@ -154,14 +149,17 @@ export default function Download() {
                         </Button>
                       )}
                       
-                      {option.platforms.includes("planetminecraft") && (
+                      {option.platforms.includes("curseforge") && (
                         <Button
-                          onClick={() => handleDownload(option.resolution, "planetminecraft", getDownloadUrl(option.resolution, "planetminecraft"))}
+                          onClick={() => handleDownload(option.resolution, "curseforge", getDownloadUrl(option.resolution, "curseforge"))}
                           variant="outline"
-                          className="flex-1 border-slate-600 hover:bg-slate-700 transition-all duration-300"
+                          className={`flex-1 ${option.popular 
+                            ? "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700"
+                            : "bg-slate-700 hover:bg-slate-600"
+                          } transition-all duration-300`}
                         >
                           <ExternalLink className="mr-2" size={16} />
-                          PMC
+                          CurseForge
                         </Button>
                       )}
                     </div>

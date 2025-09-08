@@ -52,7 +52,7 @@ export function ObjectUploader({
     // Validate file sizes
     for (const file of fileArray) {
       if (file.size > maxFileSize) {
-        setError(`File ${file.name} is too large. Maximum size: ${(maxFileSize / 1024 / 1024).toFixed(1)}MB`);
+        setError(`File ${file.name} is too large. Maximum size: ${(maxFileSize / 1024 / 4096).toFixed(4)}MB`);
         return;
       }
     }

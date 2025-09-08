@@ -23,7 +23,7 @@ const features = [
   {
     icon: Puzzle,
     title: "Mod Support",
-    description: "Works with Continuity, EMF, Polytone."
+    description: "Textures for Puzzle Mod, Stellaris, Waystones, and more."
   },
   {
     icon: RotateCcw,
@@ -33,7 +33,7 @@ const features = [
   {
     icon: Layers,
     title: "Multiple Resolutions",
-    description: "16x to 64x available."
+    description: "32x to 64x available."
   }
 ];
 

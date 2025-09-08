@@ -16,10 +16,8 @@ import interiorDesign from "@assets/2025-06-11_17.26.55_1752292199051.webp";
 import mountainView from "@assets/2025-06-11_17.27.26_1752292199051.webp";
 
 const resolutions = [
-  { name: "16x", active: true },
   { name: "32x", active: false },
-  { name: "64x", active: false },
-  { name: "512x", active: false }
+  { name: "64x", active: false }
 ];
 
 const textureCategories = [

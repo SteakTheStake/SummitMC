@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16
+    container_name: summitpg
+    restart: unless-stopped
+    ports:
+      - "${PG_PORT}:5432"
+    environment:
+      PGUSER: ${PGUSER}
+      PGPASSWORD: ${PGPASSWORD}
+      PGDATABASE: ${PGDATABASE}
+      # TZ is optional
+      TZ: "UTC"
+    volumes:
+      # Persistent data volume
+      - summitpg_data:/var/lib/postgresql/data
+      # Optional: run .sql/.sh at first boot (create schemas/seed data)
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PGUSER} -d ${PGDATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Optional: pgAdmin web UI at http://localhost:5050
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: pgadmin
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  summitpg_data:
+  pgadmin_data:

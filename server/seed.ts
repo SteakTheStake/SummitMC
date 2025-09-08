@@ -6,11 +6,10 @@ async function seedDatabase() {
 
   // Seed download statistics
   const downloadStats = [
-    { resolution: "16x", platform: "modrinth", count: 8900 },
-    { resolution: "16x", platform: "planetminecraft", count: 3200 },
+    { resolution: "32x", platform: "curseforge", count: 1200 },
     { resolution: "32x", platform: "modrinth", count: 1200 },
-    { resolution: "64x", platform: "planetminecraft", count: 600 },
-    { resolution: "512x", platform: "planetminecraft", count: 300 }
+    { resolution: "64x", platform: "curseforge", count: 600 },
+    { resolution: "64x", platform: "modrinth", count: 600 }
   ];
 
   for (const stat of downloadStats) {
@@ -20,28 +19,12 @@ async function seedDatabase() {
   // Seed versions
   const versionsData = [
     {
-      version: "2.3",
-      resolution: "16x",
-      releaseDate: new Date("2025-02-01"),
-      changelog: "Modified packed mud and mud brick, Enhanced oak log tops, Updated cherry leaves and pink petals, Fixed Polytone compatibility issues, Added wheat crops, bread, bow, arrow textures, New chest CEM, Armor stand models, Enhanced coral textures",
-      downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.3",
-      isLatest: true
-    },
-    {
-      version: "2.1",
-      resolution: "16x",
-      releaseDate: new Date("2025-01-15"),
-      changelog: "Updated cherry tree blocks, bamboo, azalea leaves, Enhanced nether content, Improved blast furnace and composter textures",
-      downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.1",
-      isLatest: false
-    },
-    {
-      version: "0.8",
+      version: "2.6",
       resolution: "64x",
-      releaseDate: new Date("2024-12-20"),
-      changelog: "High definition textures for terrain blocks, Enhanced stone variants, Improved wood grain patterns",
-      downloadUrl: "https://modrinth.com/resourcepack/summit/version/0.8",
-      isLatest: false
+      releaseDate: new Date("2025-02-01"),
+      changelog: "The 2.6 update includes 25 new features with 640 added textures, most notably almost all UI textures (~541), plus new textures for pistons, sticky pistons, sweet berry bush, sugar cane, flower pot, totem of undying, clay ball, cake item, nitwit and shepherd villagers, campfire, acacia and oak trapdoors, iron trapdoor, soul campfire, dry grass, tall dry grass, boats, poisonous potato, repeater, minecart, xp orb, pottery sherds (decorated), and a custom font. In total 3 json files and 2 animated textures were added. 23 existing textures were modified including cobblestone (more cake-like), raw chicken, blaze rod, and breeze rod (thinner), bamboo door (normal map fix), coal (bigger size), librarian villager (glasses opacity), all stripped logs, oak, birch, and acacia logs (new textures), grass (manual touchups), raw iron, raw gold, and raw copper (new _s + _n maps), lapis (overall better colors), knowledge book (less noise), cake item (more visible), redstone torch (bug fix), bamboo block + stripped (new texture), and player head (less intense eyes). Overall this update focused on major UI expansion, new block/item textures, and visual improvements to existing assets.",
+      downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.6",
+      isLatest: true
     }
   ];
 
@@ -56,14 +39,14 @@ async function seedDatabase() {
       title: "Medieval Tower",
       description: "Enhanced stone and wood textures bring medieval builds to life",
       category: "builds",
-      resolution: "16x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-03-10_14.21.53_1752292199050.webp",
       title: "Mountain Village",
       description: "Realistic terrain textures create stunning mountain landscapes",
       category: "terrain",
-      resolution: "32x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-03-20_17.23.13_1752292199050.webp",
@@ -77,14 +60,14 @@ async function seedDatabase() {
       title: "Wooden Bridge",
       description: "Natural wood grain textures with realistic lighting",
       category: "nature",
-      resolution: "16x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-03-20_21.04.00_1752292199050.webp",
       title: "Underground Cave",
       description: "Enhanced ore and mineral textures in cave systems",
       category: "terrain",
-      resolution: "32x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-03-28_23.03.19_1752292199050.webp",
@@ -98,14 +81,14 @@ async function seedDatabase() {
       title: "Turtle Beach",
       description: "Enhanced water and sand textures for coastal builds",
       category: "nature",
-      resolution: "16x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-05-02_23.46.20_1752292199051.webp",
       title: "Cherry Grove",
       description: "Beautiful cherry tree textures with realistic foliage",
       category: "nature",
-      resolution: "32x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-06-11_17.26.29_1752292199051.webp",
@@ -119,14 +102,14 @@ async function seedDatabase() {
       title: "Interior Design",
       description: "Detailed textures perfect for interior decoration",
       category: "builds",
-      resolution: "16x"
+      resolution: "64x"
     },
     {
       imageUrl: "/attached_assets/2025-06-11_17.27.26_1752292199051.webp",
       title: "Mountain Vista",
       description: "Breathtaking mountain views with enhanced terrain",
       category: "terrain",
-      resolution: "32x"
+      resolution: "64x"
     }
   ];
 

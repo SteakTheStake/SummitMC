@@ -4,9 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 
 const compatibilityVersions = [
-  { version: "1.21.4", compatible: true },
+  { version: "1.21.x", compatible: true },
   { version: "1.20.x", compatible: true },
-  { version: "1.19.x", compatible: true }
+  { version: "1.19.x", compatible: true },
+  { version: "1.18.x", compatible: true },
+  { version: "1.17.x", compatible: true },
+  { version: "1.16.x", compatible: true },
+  { version: "1.15.x", compatible: true },
+  { version: "1.14.x", compatible: true },
+  { version: "1.13.x", compatible: true },
+  { version: "1.12.x", compatible: false }
 ];
 
 const installationSteps = [
@@ -17,8 +24,8 @@ const installationSteps = [
 ];
 
 const performanceTips = [
-  "Start with 16x if you're not sure about performance",
-  "Continuity mod makes Summit even more beautiful!",
+  "Start with 32x if you're not sure about performance",
+  "Higher screen resolution = better detail but worse performance",
   "Lower render distance = smoother gameplay"
 ];
 

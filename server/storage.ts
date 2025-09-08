@@ -50,11 +50,10 @@ export class MemStorage implements IStorage {
   private initializeData() {
     // Initialize download statistics
     const downloadStats = [
-      { resolution: "16x", platform: "modrinth", count: 8900 },
-      { resolution: "16x", platform: "planetminecraft", count: 3200 },
-      { resolution: "32x", platform: "modrinth", count: 1200 },
-      { resolution: "64x", platform: "planetminecraft", count: 600 },
-      { resolution: "512x", platform: "planetminecraft", count: 300 }
+      { resolution: "64x", platform: "curseforge", count: 1200 },
+      { resolution: "64x", platform: "modrinth", count: 1200 },
+      { resolution: "64x", platform: "curseforge", count: 600 },
+      { resolution: "64x", platform: "modrinth", count: 600 }
     ];
 
     downloadStats.forEach(stat => {
@@ -71,8 +70,24 @@ export class MemStorage implements IStorage {
     // Initialize versions
     const versionsData = [
       {
+        version: "2.6",
+        resolution: "64x",
+        releaseDate: new Date("2025-08-01"),
+        changelog: "Added pistons and sticky pistons, Added sweet berry bush textures, Added sugar cane textures, Added flower pot textures, Added totem of undying, Added clay ball, Added cake item, Added nitwit villager, Added shepherd villager, Added campfire and soul campfire, Added acacia, oak, and iron trapdoors, Added dry grass and tall dry grass, Added all boats, Added poisonous potato, Added repeater, Added minecart, Added xp orb, Added pottery sherds and decorated pots, Added custom font, Added almost all UI textures (~541), Modified cobblestone to look more cake-like, Modified raw chicken to be thinner, Modified blaze rod and breeze rod to be thinner, Fixed bamboo door normal map issue, Modified coal to a bigger size, Adjusted librarian villager glasses opacity, New textures for stripped logs, oak log, birch log, and acacia log, Manual touchups for grass, Updated raw iron, raw gold, and raw copper with new _s + _n maps, Improved lapis colors, Reduced noise in knowledge book, Made cake item more visible, Fixed bug with redstone torch, New texture for bamboo block + stripped, Reduced intensity of player head eyes, Added 3 json files, Added 2 animated textures",
+        downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.6",
+        isLatest: true
+      },
+      {
+        version: "2.4",
+        resolution: "64x",
+        releaseDate: new Date("2025-02-01"),
+        changelog: "Modified packed mud and mud brick, Enhanced oak log tops, Updated cherry leaves and pink petals, Fixed Polytone compatibility issues, Added wheat crops, bread, bow, arrow textures, New chest CEM, Armor stand models, Enhanced coral textures",
+        downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.3",
+        isLatest: false
+      },
+      {
         version: "2.3",
-        resolution: "16x",
+        resolution: "64x",
         releaseDate: new Date("2025-02-01"),
         changelog: "Modified packed mud and mud brick, Enhanced oak log tops, Updated cherry leaves and pink petals, Fixed Polytone compatibility issues, Added wheat crops, bread, bow, arrow textures, New chest CEM, Armor stand models, Enhanced coral textures",
         downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.3",
@@ -80,7 +95,7 @@ export class MemStorage implements IStorage {
       },
       {
         version: "2.1",
-        resolution: "16x",
+        resolution: "64x",
         releaseDate: new Date("2025-01-15"),
         changelog: "Updated cherry tree blocks, bamboo, azalea leaves, Enhanced nether content, Improved blast furnace and composter textures",
         downloadUrl: "https://modrinth.com/resourcepack/summit/version/2.1",
@@ -111,14 +126,14 @@ export class MemStorage implements IStorage {
         title: "Mountain Landscape",
         description: "Beautiful mountain vista with Summit textures",
         category: "terrain",
-        resolution: "16x"
+        resolution: "64x"
       },
       {
         imageUrl: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
         title: "Stone Formations",
         description: "Enhanced stone textures in action",
         category: "terrain",
-        resolution: "32x"
+        resolution: "64x"
       },
       {
         imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",

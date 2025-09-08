@@ -18,7 +18,7 @@ export default function AdminSettings() {
     enableAnalytics: true,
     enableNotifications: true,
     theme: "dark",
-    maxUploadSize: "10",
+    maxUploadSize: "25",
     allowedFileTypes: "jpg,jpeg,png,webp",
   });
   const { toast } = useToast();
