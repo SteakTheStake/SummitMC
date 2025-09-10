@@ -89,7 +89,7 @@ export async function setupAuth(app: Express) {
         
         if (!user) {
           return res.status(401).json({ 
-            message: info?.message || "Invalid username or password" 
+            message: info?.message || "Invalid username or password"
           });
         }
 

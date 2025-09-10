@@ -5,7 +5,7 @@ const footerSections = [
     title: "Downloads",
     links: [
       { name: "Modrinth", url: "https://modrinth.com/resourcepack/summit" },
-      { name: "PlanetMinecraft", url: "https://www.planetminecraft.com/texture-pack/summit-6177524/" },
+      { name: "CurseForge", url: "https://www.curseforge.com/minecraft/texture-packs/summitmcrp" },
       { name: "Archive", url: "#" }
     ]
   },
@@ -13,8 +13,8 @@ const footerSections = [
     title: "Community",
     links: [
       { name: "Discord", url: "https://discord.gg/M9cmBBGKU8" },
-      { name: "Reddit", url: "#" },
-      { name: "Screenshots", url: "#" },
+      { name: "YouTube", url: "https://www.youtube.com/@SummitMCxyz" },
+      { name: "Gallery", url: "/gallery" },
       { name: "Support", url: "https://discord.gg/M9cmBBGKU8" }
     ]
   },

@@ -6,8 +6,6 @@ async function seedDatabase() {
 
   // Seed download statistics
   const downloadStats = [
-    { resolution: "32x", platform: "curseforge", count: 1200 },
-    { resolution: "32x", platform: "modrinth", count: 1200 },
     { resolution: "64x", platform: "curseforge", count: 600 },
     { resolution: "64x", platform: "modrinth", count: 600 }
   ];

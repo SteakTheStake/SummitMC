@@ -86,9 +86,9 @@ export default function Download() {
 
   const getDownloadUrl = (resolution: string, platform: string) => {
     if (platform === "modrinth") {
-      return "https://modrinth.com/resourcepack/summit";
+      return "https://cdn.modrinth.com/data/xb8whpNI/versions/IiHfgdOC/SummitMC-64x.zip";
     }
-    return "https://www.curseforge.com/texture-pack/summit-6177524/";
+    return "https://www.curseforge.com/minecraft/texture-packs/summitmcrp/download/6880206";
   };
 
   return (
@@ -168,36 +168,6 @@ export default function Download() {
               </div>
             </div>
           </div>
-          
-          {/* Stats and Requirements */}
-          <div className="space-y-6">
-            {/* Download Stats */}
-            <div className="download-stats p-8 rounded-2xl">
-              <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-teal-400">Download Stats</h3>
-              
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-teal-400 mb-2">
-                    {stats?.totalDownloads ? `${(stats.totalDownloads / 1000).toFixed(1)}k+` : "13.9k+"}
-                  </div>
-                  <div className="text-slate-400 text-sm">Total Downloads</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-teal-400 mb-2">
-                    {latestVersion?.version || "2.3"}
-                  </div>
-                  <div className="text-slate-400 text-sm">Latest Version</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-teal-400 mb-2">1.21.4</div>
-                  <div className="text-slate-400 text-sm">Supported Version</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-teal-400 mb-2">Feb 2025</div>
-                  <div className="text-slate-400 text-sm">Last Update</div>
-                </div>
-              </div>
-            </div>
             
             {/* System Requirements */}
             <div className="glassmorphism p-8 rounded-2xl">
@@ -212,26 +182,6 @@ export default function Download() {
                 ))}
               </div>
             </div>
-            
-            {/* Quick Install */}
-            <div className="glassmorphism p-8 rounded-2xl">
-              <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-teal-400">Quick Install</h3>
-              
-              <div className="space-y-4">
-                {quickInstallSteps.map((step, index) => (
-                  <div key={index} className="bg-slate-800 p-4 rounded-lg">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center text-sm font-bold">
-                        {step.step}
-                      </div>
-                      <span className="font-semibold">{step.title}</span>
-                    </div>
-                    <p className="text-slate-400 text-sm ml-11">{step.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
