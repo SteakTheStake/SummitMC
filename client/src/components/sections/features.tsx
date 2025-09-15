@@ -1,8 +1,8 @@
 import { Eye, Gauge, Leaf, Puzzle, RotateCcw, Layers } from "lucide-react";
 
-import medievalTower from "@assets/2025-02-13_02.00.29_1752292199050.webp";
-import modernHouse from "@assets/2025-03-20_17.23.13_1752292199050.webp";
-import cherryTrees from "@assets/2025-05-02_23.46.20_1752292199051.webp";
+import oresVisible from "@/assets/screenshots/ore-emerald-diamond-pick.png";
+import villageViews from "@/assets/screenshots/village-plains-big-render-dist.png";
+import buildUntouched from "@/assets/screenshots/small-medieval-vilage-home.png";
 
 const features = [
   {
@@ -94,12 +94,12 @@ export default function Features() {
           <div className="glassmorphism p-6 rounded-2xl">
             <div className="relative overflow-hidden rounded-xl mb-4">
               <img 
-                src={medievalTower} 
-                alt="Medieval architecture with Summit textures"
+                src={oresVisible} 
+                alt="No more worrying about not seeing ores with a realistic texture pack"
                 className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 px-3 py-1 rounded-full">
-                <span className="text-white text-sm font-semibold">Medieval Style</span>
+                <span className="text-white text-sm font-semibold">Visible Ores</span>
               </div>
             </div>
             <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-green">Medieval</h4>
@@ -109,7 +109,7 @@ export default function Features() {
           <div className="glassmorphism p-6 rounded-2xl">
             <div className="relative overflow-hidden rounded-xl mb-4">
               <img 
-                src={modernHouse} 
+                src={villageViews} 
                 alt="Modern house with realistic textures"
                 className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
               />
@@ -124,7 +124,7 @@ export default function Features() {
           <div className="glassmorphism p-6 rounded-2xl">
             <div className="relative overflow-hidden rounded-xl mb-4">
               <img 
-                src={cherryTrees} 
+                src={buildUntouched} 
                 alt="Cherry grove with enhanced foliage"
                 className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
               />

@@ -7,20 +7,20 @@ import { useQuery } from "@tanstack/react-query";
 import MainLayout from "@/layouts/MainLayout";
 
 // Import gallery images
-import medieval from "@assets/2025-03-28_23.03.19_1752292199050.webp";
-import modernHouse from "@assets/2025-03-20_17.23.13_1752292199050.webp";
-import cherryTrees from "@assets/2025-05-02_23.46.20_1752292199051.webp";
-import castle from "@assets/2025-03-16_02.46.31_1752292199050.webp";
-import village from "@assets/2025-03-10_14.21.53_1752292199050.webp";
-import night from "@assets/2025-03-20_21.04.00_1752292199050.webp";
+import oresVisible from "@/assets/screenshots/ore-emerald-diamond-pick.png";
+import farmBanner from "@/assets/screenshots/farm-banner-dead-grass.png";
+import livingNether from "@/assets/screenshots/nether-lava.png";
+import turtleRealism from "@/assets/screenshots/turtle-huddle.png";
+import endChorus from "@/assets/screenshots/end-chorus.png";
+import buildsBeauty from "@/assets/screenshots/small-medieval-vilage-home.png";
 
 const galleryImages = [
-  { src: medieval, alt: "Medieval castle", category: "Medieval" },
-  { src: modernHouse, alt: "Modern house", category: "Modern" },
-  { src: cherryTrees, alt: "Cherry trees", category: "Nature" },
-  { src: castle, alt: "Castle fortress", category: "Medieval" },
-  { src: village, alt: "Village", category: "Town" },
-  { src: night, alt: "Night scene", category: "Night" }
+  { src: livingNether, alt: "Nether ventures feel more alive and real", category: "nether" },
+  { src: oresVisible, alt: "No more worrying about not seeing ores with a realistic texture pack", category: "nature" },
+  { src: farmBanner, alt: "Life on the farm has never been better", category: "builds" },
+  { src: turtleRealism, alt: "Turtles all over the place", category: "nature" },
+  { src: endChorus, alt: "Chorus plants look stunning in the dark of the end", category: "end" },
+  { src: buildsBeauty, alt: "This beautiful home looks great in vanilla, but this is new and refreshed", category: "builds" }
 ];
 
 export default function Home() {
@@ -175,12 +175,12 @@ export default function Home() {
             
             <h1 className="font-pixelbasel text-7xl md:text-9xl font-black">
               <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-gradient">
-                Summit
+              Summit 64x
               </span>
             </h1>
             
             <p className="text-2xl md:text-3xl text-white/90 font-light">
-              Premium Minecraft Textures
+              Premium Minecraft Texture Pack
             </p>
             
             <div className="flex items-center justify-center gap-8 text-white/80">

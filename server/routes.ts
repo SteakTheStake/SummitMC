@@ -6,6 +6,7 @@ import { storage } from "./storage";
 import { insertScreenshotSchema } from "@shared/schema";
 import { z } from "zod";
 import { modrinthService } from "./modrinth";
+import { curseforgeService } from "./curseforge";
 import { setupAuth, isAuthenticated, isAdmin } from "./localAuth";
 import { ObjectStorageService } from "./objectStorage";
 
@@ -57,6 +58,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching download statistics:', error);
       res.status(500).json({ message: "Failed to fetch download statistics" });
+    }
+  });
+
+  // Provide latest download links by resolution
+  app.get("/api/downloads/links", async (req, res) => {
+    try {
+      const [modrinthLinks, curseforgeLinks] = await Promise.all([
+        modrinthService.getResolutionDownloadLinks(),
+        curseforgeService.getResolutionDownloadLinks(),
+      ]);
+
+      const modrinth = modrinthLinks?.modrinth ?? { '32x': null, '64x': null };
+      const curseforge = curseforgeLinks?.curseforge ?? { '32x': null, '64x': null };
+      const updatedAt = new Date().toISOString();
+
+      res.json({ modrinth, curseforge, updatedAt });
+    } catch (error) {
+      console.error('Error fetching download links:', error);
+      res.status(500).json({ message: 'Failed to fetch download links' });
     }
   });
 
@@ -198,7 +218,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertScreenshotSchema.parse(req.body);
       
       // Check for duplicates
-      const duplicates = await storage.findDuplicateScreenshots(validatedData.imageUrl, validatedData.fileHash);
+      const duplicates = await storage.findDuplicateScreenshots(
+        validatedData.imageUrl ?? undefined,
+        validatedData.fileHash ?? undefined,
+      );
       if (duplicates.length > 0) {
         return res.status(409).json({ 
           message: "Duplicate image found",
@@ -270,8 +293,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/objects/:objectPath(*)", isAuthenticated, async (req, res) => {
     const objectStorageService = new ObjectStorageService();
     try {
-      const objectFile = await objectStorageService.getObjectEntityFile(req.path);
-      objectStorageService.downloadObject(objectFile, res);
+      const objectPath = req.params.objectPath as string;
+      const objectFile = await objectStorageService.searchPublicObject(objectPath);
+      if (!objectFile) {
+        return res.status(404).json({ error: "File not found" });
+      }
+      await objectStorageService.downloadObject(objectFile, res);
     } catch (error) {
       console.error("Error serving object:", error);
       res.status(404).json({ error: "File not found" });

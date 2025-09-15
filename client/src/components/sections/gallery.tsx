@@ -3,17 +3,12 @@ import { Button } from "@/components/ui/button";
 import ComparisonSlider from "@/components/ui/comparison-slider";
 import { useQuery } from "@tanstack/react-query";
 
-import medievalTower from "@assets/2025-02-13_02.00.29_1752292199050.webp";
-import mountainVillage from "@assets/2025-03-10_14.21.53_1752292199050.webp";
-import modernHouse from "@assets/2025-03-20_17.23.13_1752292199050.webp";
-import woodenBridge from "@assets/2025-03-20_17.26.53_1752292199050.webp";
-import undergroundCave from "@assets/2025-03-20_21.04.00_1752292199050.webp";
-import netherScene from "@assets/2025-03-28_23.03.19_1752292199050.webp";
-import turtleBeach from "@assets/2025-03-28_23.15.23_1752292199051.webp";
-import cherryTrees from "@assets/2025-05-02_23.46.20_1752292199051.webp";
-import snowyMountain from "@assets/2025-06-11_17.26.29_1752292199051.webp";
-import interiorDesign from "@assets/2025-06-11_17.26.55_1752292199051.webp";
-import mountainView from "@assets/2025-06-11_17.27.26_1752292199051.webp";
+import mountainDistant from "@/assets/screenshots/moutain-close-near-features.png";
+import farmBanner from "@/assets/screenshots/farm-banner-dead-grass.png";
+import livingNether from "@/assets/screenshots/nether-lava.png";
+import turtleRealism from "@/assets/screenshots/turtle-huddle.png";
+import endChorus from "@/assets/screenshots/end-chorus.png";
+import buildsBeauty from "@/assets/screenshots/small-medieval-vilage-home.png";
 
 const resolutions = [
   { name: "32x", active: false },
@@ -22,24 +17,34 @@ const resolutions = [
 
 const textureCategories = [
   {
-    name: "Terrain",
+    name: "Landscape",
     description: "Dirt, grass, stone, and all basic terrain blocks with enhanced detail",
-    imageUrl: snowyMountain
+    imageUrl: mountainDistant
   },
   {
-    name: "Wood Types",
-    description: "All wood planks, logs, and tree-related blocks with natural grain",
-    imageUrl: woodenBridge
+    name: "Builds",
+    description: "This beautiful home looks great in vanilla, but this is new and refreshed",
+    imageUrl: farmBanner
   },
   {
-    name: "Ores & Minerals",
+    name: "Nature",
     description: "All ore blocks retextured with realistic mineral patterns",
-    imageUrl: undergroundCave
+    imageUrl: livingNether
   },
   {
-    name: "Nether Blocks",
+    name: "Nether",
     description: "Crimson/warped forests, soul fire, blackstone, and nether content",
-    imageUrl: netherScene
+    imageUrl: turtleRealism
+  },
+  {
+    name: "Dimensions",
+    description: "Chorus plants look stunning in the dark of the end",
+    imageUrl: endChorus
+  },
+  {
+    name: "Landscape",
+    description: "This beautiful home looks great in vanilla, but this is new and refreshed",
+    imageUrl: buildsBeauty
   }
 ];
 
@@ -87,10 +92,10 @@ export default function Gallery() {
         {/* Before/After Comparison */}
         <div className="mb-16">
           <div className="glassmorphism p-8 rounded-2xl">
-            <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-center">Mountain Terrain Enhancement</h3>
+            <h3 className="font-pixelbasel font-semibold text-2xl mb-6 text-center">32x to 64x</h3>
             <ComparisonSlider
-              beforeImage={mountainVillage}
-              afterImage={snowyMountain}
+              beforeImage={mountainDistant}
+              afterImage={mountainDistant}
               beforeLabel="Standard View"
               afterLabel="Summit Enhanced"
             />
@@ -102,7 +107,7 @@ export default function Gallery() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="glassmorphism p-4 rounded-xl texture-hover glow-effect">
               <img 
-                src={medievalTower} 
+                src={farmBanner} 
                 alt="Medieval tower with enhanced textures"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -112,7 +117,7 @@ export default function Gallery() {
             
             <div className="glassmorphism p-4 rounded-xl">
               <img 
-                src={mountainVillage} 
+                src={farmBanner} 
                 alt="Mountain village with realistic textures"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -122,7 +127,7 @@ export default function Gallery() {
             
             <div className="glassmorphism p-4 rounded-xl">
               <img 
-                src={modernHouse} 
+                src={farmBanner} 
                 alt="Modern house with enhanced materials"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -132,7 +137,7 @@ export default function Gallery() {
             
             <div className="glassmorphism p-4 rounded-xl">
               <img 
-                src={cherryTrees} 
+                src={livingNether} 
                 alt="Cherry trees with enhanced foliage"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -142,7 +147,7 @@ export default function Gallery() {
             
             <div className="glassmorphism p-4 rounded-xl">
               <img 
-                src={turtleBeach} 
+                src={turtleRealism} 
                 alt="Beach scene with realistic water and sand"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
@@ -152,11 +157,11 @@ export default function Gallery() {
             
             <div className="glassmorphism p-4 rounded-xl">
               <img 
-                src={interiorDesign} 
+                src={endChorus} 
                 alt="Interior design with detailed textures"
                 className="w-full h-48 object-cover rounded-lg mb-3"
               />
-              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">Interior Design</h4>
+              <h4 className="font-pixelbasel font-semibold text-lg text-teal-400 mb-1">End Chorus</h4>
               <p className="text-slate-300 text-sm">Detailed textures perfect for interior decoration</p>
             </div>
           </div>

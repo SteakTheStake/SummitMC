@@ -186,6 +186,76 @@ export class ModrinthService {
       return null;
     }
   }
+
+  /**
+   * Build direct download links for each resolution by inspecting recent versions and their files.
+   * We heuristically match files whose filename includes "64x" or "32x".
+   * Falls back to primary files if an exact match is not found.
+   */
+  async getResolutionDownloadLinks(): Promise<{
+    modrinth: Record<"32x" | "64x", string | null>;
+    updatedAt: string;
+  } | null> {
+    try {
+      const cacheKey = 'resolution-download-links';
+      const cached = this.getCachedData(cacheKey);
+      if (cached) {
+        return cached;
+      }
+
+      const response = await fetch(`${this.baseUrl}/project/${this.projectSlug}/version`);
+      if (!response.ok) {
+        console.error(`Modrinth API error: ${response.status} ${response.statusText}`);
+        return null;
+      }
+
+      const versions: ModrinthVersion[] = await response.json();
+      // Consider a subset of latest versions to search for files
+      const latestFirst = versions.sort((a, b) =>
+        new Date(b.date_published).getTime() - new Date(a.date_published).getTime()
+      );
+
+      let url64: string | null = null;
+      let url32: string | null = null;
+
+      for (const v of latestFirst) {
+        for (const f of v.files) {
+          const filename = f.filename.toLowerCase();
+          if (!url64 && (filename.includes('64x') || filename.includes('x64'))) {
+            url64 = f.url;
+          }
+          if (!url32 && (filename.includes('32x') || filename.includes('x32'))) {
+            url32 = f.url;
+          }
+        }
+        // Heuristic fallback: pick primary files if still missing
+        if (!url64) {
+          const primary = v.files.find((f) => f.primary);
+          if (primary && primary.url && (v.name.includes('64x') || v.version_number.includes('64'))) {
+            url64 = primary.url;
+          }
+        }
+        if (!url32) {
+          const primary = v.files.find((f) => f.primary);
+          if (primary && primary.url && (v.name.includes('32x') || v.version_number.includes('32'))) {
+            url32 = primary.url;
+          }
+        }
+        if (url64 && url32) break;
+      }
+
+      const result = {
+        modrinth: { '32x': url32 ?? null, '64x': url64 ?? null },
+        updatedAt: new Date().toISOString(),
+      } as const;
+
+      this.setCachedData(cacheKey, result);
+      return result;
+    } catch (error) {
+      console.error('Error building resolution download links from Modrinth:', error);
+      return null;
+    }
+  }
 }
 
 export const modrinthService = new ModrinthService();

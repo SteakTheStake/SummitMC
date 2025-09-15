@@ -28,10 +28,10 @@ export default function Navigation({ isScrolled }: NavigationProps) {
         <div className="flex justify-between items-center">
           <Link href="/">
             <div className="flex items-center space-x-3 cursor-pointer">
-              <img src="/limitless-logo.png" alt="Limitless Designs" className="h-10 w-auto" />
+              <img src="/limitless-logo.png" alt="Limitless Designs" className="h-12 w-auto" />
               <div>
-                <h1 className="font-pixelbasel font-bold text-xl bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Summit</h1>
-                <p className="text-xs text-slate-400">Limitless Designs</p>
+                <h1 className="font-pixelbasel font-bold text-xl bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Limitless Designs</h1>
+                <p className="text-xs text-slate-400">Summit</p>
               </div>
             </div>
           </Link>

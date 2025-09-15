@@ -53,9 +53,9 @@ export default function Hero() {
             v{latestVersion?.version || "2.3"} Latest
           </Badge>
         </div>
-        
+          
         <h1 className="font-pixelbasel font-black text-5xl md:text-7xl mb-4">
-          <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Summit</span>
+          <span className="bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">Summit 64x</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto">
@@ -87,7 +87,7 @@ export default function Hero() {
         <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-sm text-slate-400">
           <div className="flex items-center gap-2">
             <Box className="minecraft-green" size={16} />
-            <span>1.19.x - 1.21.4</span>
+            <span>1.12.x - 1.21.x</span>
           </div>
           <div className="flex items-center gap-2">
             <Layers className="minecraft-blue" size={16} />

@@ -1,19 +1,18 @@
-import { CheckCircle, Book, Rocket, Camera, History, LifeBuoy } from "lucide-react";
+import { CheckCircle, Book, Rocket, Camera, History, LifeBuoy, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 
-const compatibilityVersions = [
-  { version: "1.21.x", compatible: true },
-  { version: "1.20.x", compatible: true },
-  { version: "1.19.x", compatible: true },
-  { version: "1.18.x", compatible: true },
-  { version: "1.17.x", compatible: true },
-  { version: "1.16.x", compatible: true },
-  { version: "1.15.x", compatible: true },
-  { version: "1.14.x", compatible: true },
-  { version: "1.13.x", compatible: true },
-  { version: "1.12.x", compatible: false }
+type CompatibilityMod = {
+  version: string;
+  status: "compatible" | "mostly compatible" | "incompatible";
+  url?: string | null;
+};
+
+const compatibilityMods: CompatibilityMod[] = [
+  { version: "Waystones", status: "compatible", url: "https://modrinth.com/mod/waystones" },
+  { version: "Puzzle", status: "compatible", url: "https://modrinth.com/mod/puzzle" },
+  { version: "Stellaris", status: "mostly compatible", url: "https://modrinth.com/mod/stellaris" }
 ];
 
 const installationSteps = [
@@ -30,7 +29,7 @@ const performanceTips = [
 ];
 
 export default function Tools() {
-  const { data: latestVersion } = useQuery({
+  const { data: latestVersion } = useQuery<{ version: string }>({
     queryKey: ["/api/versions/latest"],
   });
 
@@ -42,7 +41,7 @@ export default function Tools() {
   ];
 
   return (
-    <section id="tools" className="py-20 px-6">
+    <section id="setup" className="py-20 px-6">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="font-pixelbasel font-bold text-4xl md:text-5xl mb-4">
@@ -59,23 +58,43 @@ export default function Tools() {
             <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6">
               <CheckCircle className="text-white" size={24} />
             </div>
-            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-green">Versions</h3>
-            <p className="text-slate-300 mb-6">Compatible versions</p>
+            <h3 className="font-pixelbasel font-semibold text-xl mb-4 minecraft-green">Mods</h3>
+            <p className="text-slate-300 mb-6">Supported versions</p>
             
             <div className="space-y-3">
-              {compatibilityVersions.map((version, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
-                  <span className="text-sm">{version.version}</span>
-                  <Badge variant={version.compatible ? "default" : "destructive"} className="text-xs">
-                    {version.compatible ? "✓ Compatible" : "✗ Incompatible"}
-                  </Badge>
-                </div>
-              ))}
+              {compatibilityMods.map((version: CompatibilityMod, index: number) => {
+                const label =
+                  version.status === "compatible" ? "Compatible" : version.status === "mostly compatible" ? "Mostly Compatible" : "Incompatible";
+                const isMostly = version.status === "mostly compatible";
+                return (
+                  <div key={index} className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
+                    <span className="text-sm">{version.version}</span>
+                    {version.url ? (
+                      <a href={version.url} target="_blank" rel="noreferrer" aria-label={`${version.version} link`} className="flex items-center">
+                        {isMostly ? (
+                          <span className="text-xs bg-orange-500 rounded-xl text-white px-2 py-1 mr-2">{label}</span>
+                        ) : (
+                          <Badge variant={version.status === "incompatible" ? "destructive" : "default"} className="text-xs mr-2">
+                            {label}
+                          </Badge>
+                        )}
+                        <ExternalLink size={14} />
+                      </a>
+                    ) : (
+                      isMostly ? (
+                        <span className="text-xs bg-orange-500 text-white rounded-xl px-2 py-1">{label}</span>
+                      ) : (
+                        <Badge variant={version.status === "incompatible" ? "destructive" : "default"} className="text-xs">{label}</Badge>
+                      )
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
           
           {/* Installation Guide */}
-          <div className="glassmorphism p-8 rounded-2xl">
+          <div id="installation" className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
               <Book className="text-white" size={24} />
             </div>
@@ -93,7 +112,7 @@ export default function Tools() {
           </div>
           
           {/* Performance Tips */}
-          <div className="glassmorphism p-8 rounded-2xl">
+          <div id="performance" className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-6">
               <Rocket className="text-white" size={24} />
             </div>
@@ -116,7 +135,7 @@ export default function Tools() {
               <Camera className="text-white" size={24} />
             </div>
             <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Screenshot Sharing</h3>
-            <p className="text-slate-300 mb-6">Share your Summit world with the community</p>
+            <p className="text-slate-300 mb-6">Share your Summit screenshots with the community</p>
             
             <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 transition-all duration-300">
               Upload Screenshot
@@ -124,12 +143,12 @@ export default function Tools() {
           </div>
           
           {/* Changelog */}
-          <div className="glassmorphism p-8 rounded-2xl">
+          <div id="changelog" className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <History className="text-white" size={24} />
             </div>
             <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Latest Updates</h3>
-            <p className="text-slate-300 mb-6">v{latestVersion?.version || "2.3"} - February 2025</p>
+            <p className="text-slate-300 mb-6">v{latestVersion?.version || "2.3"}</p>
             
             <div className="space-y-2 text-sm text-slate-400">
               {recentUpdates.map((update, index) => (
@@ -142,7 +161,7 @@ export default function Tools() {
           </div>
           
           {/* Support */}
-          <div className="glassmorphism p-8 rounded-2xl">
+          <div id="support" className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <LifeBuoy className="text-white" size={24} />
             </div>
@@ -150,11 +169,10 @@ export default function Tools() {
             <p className="text-slate-300 mb-6">Get support from the community</p>
             
             <div className="space-y-3">
-              <Button variant="outline" className="w-full justify-center border-slate-600 hover:bg-slate-700">
-                Discord Server
-              </Button>
-              <Button variant="outline" className="w-full justify-center border-slate-600 hover:bg-slate-700">
-                Contact Support
+              <Button variant="outline" className="w-full justify-center border-slate-600 hover:bg-slate-700" asChild>
+                <a href="https://discord.gg/M9cmBBGKU8" target="_blank" rel="noopener noreferrer">
+                  Discord Server
+                </a>
               </Button>
             </div>
           </div>

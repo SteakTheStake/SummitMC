@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { MoveHorizontal } from "lucide-react";
 
-import _2025_03_28_23_03_19 from "@assets/2025-03-28_23.03.19.webp";
 
 interface ComparisonSliderProps {
   beforeImage: string;
@@ -63,7 +62,7 @@ export default function ComparisonSlider({
     >
       {/* Before Image */}
       <img 
-        src={_2025_03_28_23_03_19} 
+        src={"https://oyster.ignimgs.com/mediawiki/apis.ign.com/minecraft/8/8e/Ruined_Portal_-_Small.png"} 
         alt="Before comparison"
         className="w-full h-full object-cover"
         draggable={false}
