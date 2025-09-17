@@ -1,22 +1,22 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/Home";
-import Features from "@/pages/Features";
-import Gallery from "@/pages/Gallery";
-import Download from "@/pages/Download";
-import About from "@/pages/About";
-import Admin from "@/pages/Admin";
-import Login from "@/pages/Login";
-import AdminLayout from "@/layouts/AdminLayout";
-import AdminOverview from "@/pages/admin/AdminOverview";
-import AdminVersions from "@/pages/admin/AdminVersions";
-import AdminGallery from "@/pages/admin/AdminGallery";
-import AdminAnalytics from "@/pages/admin/AdminAnalytics";
-import AdminSettings from "@/pages/admin/AdminSettings";
+import { Toaster } from "./components/ui/toaster";
+import { TooltipProvider } from "./components/ui/tooltip";
+import NotFound from "./pages/not-found";
+import Home from "./pages/Home";
+import Features from "./pages/Features";
+import Gallery from "./pages/Gallery";
+import Download from "./pages/Download";
+import About from "./pages/About";
+import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminOverview from "./pages/admin/AdminOverview";
+import AdminVersions from "./pages/admin/AdminVersions";
+import AdminGallery from "./pages/admin/AdminGallery";
+import AdminAnalytics from "./pages/admin/AdminAnalytics";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 function Router() {
   return (

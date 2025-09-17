@@ -60,7 +60,6 @@
 
 @layer base {
   * {
-    @apply border-border;
   }
 
   body {
@@ -107,6 +106,7 @@
 @layer components {
   .glassmorphism {
     background: rgba(30, 41, 59, 0.4);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(148, 163, 184, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
