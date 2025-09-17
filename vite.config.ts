@@ -7,35 +7,49 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default defineConfig({
-  plugins: [
-    react(),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "client", "src"),
-      "@shared": path.resolve(__dirname, "shared"),
-      "@assets": path.resolve(__dirname, "attached_assets"),
+function resolvePath(p: string) {
+  return path.resolve(__dirname, p).replace(/\\/g, "/");
+}
+
+export default defineConfig(async () => {
+  const cartographerPlugin =
+    process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined
+      ? (await import("@replit/vite-plugin-cartographer")).cartographer()
+      : null;
+
+  return {
+    plugins: [
+      react(),
+      runtimeErrorOverlay(),
+      ...(cartographerPlugin ? [cartographerPlugin] : []),
+    ],
+    resolve: {
+      alias: {
+        "@": resolvePath("client/src"),
+        "@shared": resolvePath("shared"),
+        "@assets": resolvePath("attached_assets"),
+      },
+      extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
     },
-  },
-  root: path.resolve(__dirname, "client"),
-  build: {
-    outDir: path.resolve(__dirname, "dist/public"),
-    emptyOutDir: true,
-  },
-  server: {
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
+    root: resolvePath("."),
+    build: {
+      outDir: resolvePath("client/dist"),
+      emptyOutDir: true,
+      rollupOptions: {
+        onwarn(warning, warn) {
+          if (warning.code === "UNRESOLVED_IMPORT" && warning.source?.startsWith("@/")) {
+            throw new Error(`Unresolved alias: ${warning.source}`);
+          }
+          warn(warning);
+        }
+      }
+    },    
+    server: {
+      host: "0.0.0.0",
+      fs: {
+        strict: true,
+        deny: ["**/.*"],
+      },
     },
-  },
+  };
 });
