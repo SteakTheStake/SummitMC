@@ -186,7 +186,7 @@ export default function Home() {
             <div className="flex items-center justify-center gap-8 text-white/80">
               <span className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5" />
-                {stats?.realTimeDownloads ? `${(stats.realTimeDownloads / 1000).toFixed(1)}k` : "19.6k"} downloads
+                {stats?.realTimeDownloads ? `${(stats.realTimeDownloads / 1000).toFixed(1)}k` : "30k"} downloads
               </span>
               {stats?.modrinth && (
                 <span className="flex items-center gap-2">
