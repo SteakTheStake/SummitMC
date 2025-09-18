@@ -18,6 +18,7 @@ export default defineConfig(async () => {
       : null;
 
   return {
+    root: resolvePath("client"), // 👈 set frontend root to client/
     plugins: [
       react(),
       runtimeErrorOverlay(),
@@ -31,19 +32,21 @@ export default defineConfig(async () => {
       },
       extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
     },
-    root: resolvePath("."),
     build: {
-      outDir: resolvePath("client/dist"),
+      outDir: resolvePath("dist/public"), // 👈 frontend assets go here
       emptyOutDir: true,
       rollupOptions: {
         onwarn(warning, warn) {
-          if (warning.code === "UNRESOLVED_IMPORT" && warning.source?.startsWith("@/")) {
+          if (
+            warning.code === "UNRESOLVED_IMPORT" &&
+            warning.source?.startsWith("@/")
+          ) {
             throw new Error(`Unresolved alias: ${warning.source}`);
           }
           warn(warning);
-        }
-      }
-    },    
+        },
+      },
+    },
     server: {
       host: "0.0.0.0",
       fs: {
