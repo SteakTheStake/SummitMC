@@ -99,11 +99,11 @@ export default function Features() {
                 className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 px-3 py-1 rounded-full">
-                <span className="text-white text-sm font-semibold">Visible Ores</span>
+                <span className="text-white text-sm font-semibold">Emerald Ore</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-green">Medieval</h4>
-            <p className="text-slate-300">Enhanced stone textures</p>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-green">Ore's are easy to spot!</h4>
+            <p className="text-slate-300">No need to double check, You already know what it is.</p>
           </div>
 
           <div className="glassmorphism p-6 rounded-2xl">
@@ -114,11 +114,11 @@ export default function Features() {
                 className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 px-3 py-1 rounded-full">
-                <span className="text-white text-sm font-semibold">Modern Style</span>
+                <span className="text-white text-sm font-semibold">Plains Village</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-blue">Modern</h4>
-            <p className="text-slate-300">Contemporary designs</p>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-blue">Grand Views</h4>
+            <p className="text-slate-300">The scale of the landscape doesnt change the quality thanks to CTM.</p>
           </div>
 
           <div className="glassmorphism p-6 rounded-2xl">
@@ -129,11 +129,11 @@ export default function Features() {
                 className="w-full h-64 object-cover transition-transform duration-300 hover:scale-105"
               />
               <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 px-3 py-1 rounded-full">
-                <span className="text-white text-sm font-semibold">Nature</span>
+                <span className="text-white text-sm font-semibold">Patrix's Map</span>
               </div>
             </div>
-            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-gold">Nature</h4>
-            <p className="text-slate-300">Vivid landscapes</p>
+            <h4 className="font-pixelbasel font-semibold text-xl mb-2 minecraft-gold">Your Builds are safe here!</h4>
+            <p className="text-slate-300">I strive to use the most vanilla-accurate palette possible.</p>
           </div>
         </div>
       </div>

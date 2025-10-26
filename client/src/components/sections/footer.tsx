@@ -12,10 +12,10 @@ const footerSections = [
   {
     title: "Community",
     links: [
-      { name: "Discord", url: "https://discord.gg/M9cmBBGKU8" },
+      { name: "Discord", url: "https://discord.gg/JgK6rFxDAd" },
       { name: "YouTube", url: "https://www.youtube.com/@SummitMCxyz" },
       { name: "Gallery", url: "/gallery" },
-      { name: "Support", url: "https://discord.gg/M9cmBBGKU8" }
+      { name: "Support", url: "https://discord.gg/JgK6rFxDAd" }
     ]
   },
   {

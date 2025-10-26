@@ -129,7 +129,7 @@ export default function Tools() {
             </div>
           </div>
           
-          {/* Screenshot Sharing */}
+          {/* Screenshot Sharing
           <div className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <Camera className="text-white" size={24} />
@@ -138,17 +138,17 @@ export default function Tools() {
             <p className="text-slate-300 mb-6">Share your Summit screenshots with the community</p>
             
             <Button className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 transition-all duration-300">
-              Upload Screenshot
+              Coming Soon
             </Button>
           </div>
-          
-          {/* Changelog */}
+           */}
+          {/* Changelog
           <div id="changelog" className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
               <History className="text-white" size={24} />
             </div>
             <h3 className="font-pixelbasel font-semibold text-xl mb-4 text-teal-400">Latest Updates</h3>
-            <p className="text-slate-300 mb-6">v{latestVersion?.version || "2.3"}</p>
+            <p className="text-slate-300 mb-6">v{latestVersion?.version || "2.8"}</p>
             
             <div className="space-y-2 text-sm text-slate-400">
               {recentUpdates.map((update, index) => (
@@ -159,7 +159,8 @@ export default function Tools() {
               ))}
             </div>
           </div>
-          
+           */}
+
           {/* Support */}
           <div id="support" className="glassmorphism p-8 rounded-2xl">
             <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center mb-6">
@@ -170,7 +171,7 @@ export default function Tools() {
             
             <div className="space-y-3">
               <Button variant="outline" className="w-full justify-center border-slate-600 hover:bg-slate-700" asChild>
-                <a href="https://discord.gg/M9cmBBGKU8" target="_blank" rel="noopener noreferrer">
+                <a href="https://discord.gg/JgK6rFxDAd" target="_blank" rel="noopener noreferrer">
                   Discord Server
                 </a>
               </Button>
