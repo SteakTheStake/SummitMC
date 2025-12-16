@@ -14,13 +14,25 @@ import turtleRealism from "@/assets/screenshots/turtle-huddle.png";
 import endChorus from "@/assets/screenshots/end-chorus.png";
 import buildsBeauty from "@/assets/screenshots/small-medieval-vilage-home.png";
 
+// Import Sonder 1024x images
+import sonderTreeWide from "@/assets/screenshots/sonder-tree-wide.png";
+import sonderTreeLookingUp from "@/assets/screenshots/sonder-tree-looking-up.png";
+import sonderTreeYellowFlowers1 from "@/assets/screenshots/sonder-tree-yellow-flowers-1.png";
+import sonderTreeYellowFlowers2 from "@/assets/screenshots/sonder-tree-yellow-flowers-2.png";
+import sonderTextureSamples from "@/assets/screenshots/sonder-texture-samples.png";
+
 const galleryImages = [
   { src: livingNether, alt: "Nether ventures feel more alive and real", category: "nether" },
   { src: oresVisible, alt: "No more worrying about not seeing ores with a realistic texture pack", category: "nature" },
   { src: farmBanner, alt: "Life on the farm has never been better", category: "builds" },
   { src: turtleRealism, alt: "Turtles all over the place", category: "nature" },
   { src: endChorus, alt: "Chorus plants look stunning in the dark of the end", category: "end" },
-  { src: buildsBeauty, alt: "This beautiful home looks great in vanilla, but this is new and refreshed", category: "builds" }
+  { src: buildsBeauty, alt: "This beautiful home looks great in vanilla, but this is new and refreshed", category: "builds" },
+  { src: sonderTreeWide, alt: "Sonder 1024x - Ultra realistic tree textures with stunning detail", category: "sonder" },
+  { src: sonderTreeLookingUp, alt: "Sonder 1024x - Photorealistic bark textures looking up at the canopy", category: "sonder" },
+  { src: sonderTreeYellowFlowers1, alt: "Sonder 1024x - Beautiful tree trunk with vibrant yellow flowers", category: "sonder" },
+  { src: sonderTreeYellowFlowers2, alt: "Sonder 1024x - Realistic nature scene with detailed foliage", category: "sonder" },
+  { src: sonderTextureSamples, alt: "Sonder 1024x - Texture showcase featuring realistic leaves and grass", category: "sonder" }
 ];
 
 export default function Home() {
