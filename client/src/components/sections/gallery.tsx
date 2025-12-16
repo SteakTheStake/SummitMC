@@ -21,6 +21,13 @@ import netherRuins from "@/assets/screenshots/nether-ruins.png";
 import ironBlock from "@/assets/screenshots/iron-like-youve-never-seen-before.png";
 import castleRuins from "@/assets/screenshots/castle-ruins-close.png";
 
+// Import Sonder 1024x images
+import sonderTreeWide from "@/assets/Sonder/sonder-tree-wide.png";
+import sonderTreeLookingUp from "@/assets/Sonder/sonder-tree-looking-up.png";
+import sonderTreeYellowFlowers1 from "@/assets/Sonder/sonder-tree-yellow-flowers-1.png";
+import sonderTreeYellowFlowers2 from "@/assets/Sonder/sonder-tree-yellow-flowers-2.png";
+import sonderTextureSamples from "@/assets/Sonder/sonder-texture-samples.png";
+
 const galleryImages: ViewerImage[] = [
   { src: spiderFright, alt: "Spider and cave spider" },
   { src: ironGollem, alt: "Iron Golem holding down the fort" },
@@ -31,6 +38,11 @@ const galleryImages: ViewerImage[] = [
   { src: ironBlock, alt: "Iron block close-up" },
   { src: endChorus, alt: "End Chorus plants" },
   { src: netherRuins, alt: "Nether portal ruins" },
+  { src: sonderTreeWide, alt: "Sonder 1024x - Ultra realistic tree textures with stunning detail" },
+  { src: sonderTreeLookingUp, alt: "Sonder 1024x - Photorealistic bark textures looking up at the canopy" },
+  { src: sonderTreeYellowFlowers1, alt: "Sonder 1024x - Beautiful tree trunk with vibrant yellow flowers" },
+  { src: sonderTreeYellowFlowers2, alt: "Sonder 1024x - Realistic nature scene with detailed foliage" },
+  { src: sonderTextureSamples, alt: "Sonder 1024x - Texture showcase featuring realistic leaves and grass" },
 ];
 
 export default function Gallery() {
