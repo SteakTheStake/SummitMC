@@ -15,11 +15,11 @@ import endChorus from "@/assets/screenshots/end-chorus.png";
 import buildsBeauty from "@/assets/screenshots/small-medieval-vilage-home.png";
 
 // Import Sonder 1024x images
-import sonderTreeWide from "@/assets/screenshots/sonder-tree-wide.png";
-import sonderTreeLookingUp from "@/assets/screenshots/sonder-tree-looking-up.png";
-import sonderTreeYellowFlowers1 from "@/assets/screenshots/sonder-tree-yellow-flowers-1.png";
-import sonderTreeYellowFlowers2 from "@/assets/screenshots/sonder-tree-yellow-flowers-2.png";
-import sonderTextureSamples from "@/assets/screenshots/sonder-texture-samples.png";
+import sonderTreeWide from "@/assets/Sonder/sonder-tree-wide.png";
+import sonderTreeLookingUp from "@/assets/Sonder/sonder-tree-looking-up.png";
+import sonderTreeYellowFlowers1 from "@/assets/Sonder/sonder-tree-yellow-flowers-1.png";
+import sonderTreeYellowFlowers2 from "@/assets/Sonder/sonder-tree-yellow-flowers-2.png";
+import sonderTextureSamples from "@/assets/Sonder/sonder-texture-samples.png";
 
 const galleryImages = [
   { src: livingNether, alt: "Nether ventures feel more alive and real", category: "nether" },

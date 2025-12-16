@@ -22,11 +22,11 @@ import ironBlock from "@/assets/screenshots/iron-like-youve-never-seen-before.pn
 import castleRuins from "@/assets/screenshots/castle-ruins-close.png";
 
 // Import Sonder 1024x images
-import sonderTreeWide from "@/assets/screenshots/sonder-tree-wide.png";
-import sonderTreeLookingUp from "@/assets/screenshots/sonder-tree-looking-up.png";
-import sonderTreeYellowFlowers1 from "@/assets/screenshots/sonder-tree-yellow-flowers-1.png";
-import sonderTreeYellowFlowers2 from "@/assets/screenshots/sonder-tree-yellow-flowers-2.png";
-import sonderTextureSamples from "@/assets/screenshots/sonder-texture-samples.png";
+import sonderTreeWide from "@/assets/Sonder/sonder-tree-wide.png";
+import sonderTreeLookingUp from "@/assets/Sonder/sonder-tree-looking-up.png";
+import sonderTreeYellowFlowers1 from "@/assets/Sonder/sonder-tree-yellow-flowers-1.png";
+import sonderTreeYellowFlowers2 from "@/assets/Sonder/sonder-tree-yellow-flowers-2.png";
+import sonderTextureSamples from "@/assets/Sonder/sonder-texture-samples.png";
 
 const galleryImages: ViewerImage[] = [
   { src: spiderFright, alt: "Spider and cave spider" },
