@@ -22,11 +22,11 @@ import ironBlock from "@/assets/screenshots/iron-like-youve-never-seen-before.pn
 import castleRuins from "@/assets/screenshots/castle-ruins-close.png";
 
 // Import Sonder 1024x images
-import sonderTreeWide from "@/assets/Sonder/sonder-tree-wide.png";
-import sonderTreeLookingUp from "@/assets/Sonder/sonder-tree-looking-up.png";
-import sonderTreeYellowFlowers1 from "@/assets/Sonder/sonder-tree-yellow-flowers-1.png";
-import sonderTreeYellowFlowers2 from "@/assets/Sonder/sonder-tree-yellow-flowers-2.png";
-import sonderTextureSamples from "@/assets/Sonder/sonder-texture-samples.png";
+import sonderTreeUpward from "@/assets/Sonder/IMG_2603.jpeg";
+import sonderBarkDetail from "@/assets/Sonder/IMG_2604.jpeg";
+import sonderBarkTexture from "@/assets/Sonder/IMG_2605.jpeg";
+import sonderLeafLitter from "@/assets/Sonder/IMG_2606.jpeg";
+import sonderOakLog from "@/assets/Sonder/IMG_2607.jpeg";
 
 const galleryImages: ViewerImage[] = [
   { src: spiderFright, alt: "Spider and cave spider" },
@@ -38,11 +38,11 @@ const galleryImages: ViewerImage[] = [
   { src: ironBlock, alt: "Iron block close-up" },
   { src: endChorus, alt: "End Chorus plants" },
   { src: netherRuins, alt: "Nether portal ruins" },
-  { src: sonderTreeWide, alt: "Sonder 1024x - Ultra realistic tree textures with stunning detail" },
-  { src: sonderTreeLookingUp, alt: "Sonder 1024x - Photorealistic bark textures looking up at the canopy" },
-  { src: sonderTreeYellowFlowers1, alt: "Sonder 1024x - Beautiful tree trunk with vibrant yellow flowers" },
-  { src: sonderTreeYellowFlowers2, alt: "Sonder 1024x - Realistic nature scene with detailed foliage" },
-  { src: sonderTextureSamples, alt: "Sonder 1024x - Texture showcase featuring realistic leaves and grass" },
+  { src: sonderTreeUpward, alt: "Sonder 1024x - Upward view of complete tree with detailed trunk and varied canopy blocks" },
+  { src: sonderBarkDetail, alt: "Sonder 1024x - Detailed bark showcasing light interaction and color variation" },
+  { src: sonderBarkTexture, alt: "Sonder 1024x - Reddish-brown bark texture beneath autumn pale oak leaves" },
+  { src: sonderLeafLitter, alt: "Sonder 1024x - POM leaf litter layered over grass and podzol blocks demonstrating depth stacking" },
+  { src: sonderOakLog, alt: "Sonder 1024x - Oak log with intricate POM bark detail in grassy landscape" },
 ];
 
 export default function Gallery() {

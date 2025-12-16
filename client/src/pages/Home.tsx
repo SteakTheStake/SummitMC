@@ -15,11 +15,11 @@ import endChorus from "@/assets/screenshots/end-chorus.png";
 import buildsBeauty from "@/assets/screenshots/small-medieval-vilage-home.png";
 
 // Import Sonder 1024x images
-import sonderTreeWide from "@/assets/Sonder/sonder-tree-wide.png";
-import sonderTreeLookingUp from "@/assets/Sonder/sonder-tree-looking-up.png";
-import sonderTreeYellowFlowers1 from "@/assets/Sonder/sonder-tree-yellow-flowers-1.png";
-import sonderTreeYellowFlowers2 from "@/assets/Sonder/sonder-tree-yellow-flowers-2.png";
-import sonderTextureSamples from "@/assets/Sonder/sonder-texture-samples.png";
+import sonderTreeUpward from "@/assets/Sonder/IMG_2603.jpeg";
+import sonderBarkDetail from "@/assets/Sonder/IMG_2604.jpeg";
+import sonderBarkTexture from "@/assets/Sonder/IMG_2605.jpeg";
+import sonderLeafLitter from "@/assets/Sonder/IMG_2606.jpeg";
+import sonderOakLog from "@/assets/Sonder/IMG_2607.jpeg";
 
 const galleryImages = [
   { src: livingNether, alt: "Nether ventures feel more alive and real", category: "nether" },
@@ -28,11 +28,11 @@ const galleryImages = [
   { src: turtleRealism, alt: "Turtles all over the place", category: "nature" },
   { src: endChorus, alt: "Chorus plants look stunning in the dark of the end", category: "end" },
   { src: buildsBeauty, alt: "This beautiful home looks great in vanilla, but this is new and refreshed", category: "builds" },
-  { src: sonderTreeWide, alt: "Sonder 1024x - Ultra realistic tree textures with stunning detail", category: "sonder" },
-  { src: sonderTreeLookingUp, alt: "Sonder 1024x - Photorealistic bark textures looking up at the canopy", category: "sonder" },
-  { src: sonderTreeYellowFlowers1, alt: "Sonder 1024x - Beautiful tree trunk with vibrant yellow flowers", category: "sonder" },
-  { src: sonderTreeYellowFlowers2, alt: "Sonder 1024x - Realistic nature scene with detailed foliage", category: "sonder" },
-  { src: sonderTextureSamples, alt: "Sonder 1024x - Texture showcase featuring realistic leaves and grass", category: "sonder" }
+  { src: sonderTreeUpward, alt: "Sonder 1024x - Upward view of complete tree with detailed trunk and varied canopy blocks", category: "sonder" },
+  { src: sonderBarkDetail, alt: "Sonder 1024x - Detailed bark showcasing light interaction and color variation", category: "sonder" },
+  { src: sonderBarkTexture, alt: "Sonder 1024x - Reddish-brown bark texture beneath autumn pale oak leaves", category: "sonder" },
+  { src: sonderLeafLitter, alt: "Sonder 1024x - POM leaf litter layered over grass and podzol blocks demonstrating depth stacking", category: "sonder" },
+  { src: sonderOakLog, alt: "Sonder 1024x - Oak log with intricate POM bark detail in grassy landscape", category: "sonder" }
 ];
 
 export default function Home() {
